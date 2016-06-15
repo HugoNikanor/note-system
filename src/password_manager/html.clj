@@ -4,6 +4,8 @@
             [password-manager.security :as security])
   )
 
+(declare create-entry)
+
 (def table-fields (map str ['service
                             'username
                             'email
@@ -12,7 +14,7 @@
                             'password]))
 
 ; TODO defhtml
-(defn create-entries-table [entries]
+(defn get-formated [entries]
   (html 
     [:table {:border "1"}
      [:tr 
@@ -25,5 +27,5 @@
 (defn create-entry [entry]
   (html
     [:tr
-     (map #(vector :td ((keyword %) (assoc entry :password (security/decrypt (:password entry))))
-          table-fields))]))
+     (map #(vector :td ((keyword %) (security/decrypt-password entry)))
+          table-fields)]))

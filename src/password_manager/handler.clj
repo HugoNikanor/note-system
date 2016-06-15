@@ -2,48 +2,26 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [hiccup.core :refer :all]
-            [hiccup.page :refer :all]
             [password-manager.database :as db]
-            [password-manager.security :as security]))
-
-(declare create-entry)
-(declare create-entries-table)
-
-(def table-fields (map str ['service
-                            'username
-                            'email
-                            'date-set
-                            'note]))
+            [password-manager.security :as security]
+            [password-manager.html :as html]
+            [password-manager.json :as json]
+            [other.call :refer :all]))
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
   (route/resources "/")
   (context "/password" []
+           ;(context "/:type" [type]
            (GET "/" [service username email show-old]
+                ;(str "default"))
                 (let [entries (db/query service username email show-old)]
-                  (create-entries-table entries)
-                  )))
+                  ;(call (str type "/get-formated") entries)))
+                  (html/get-formated entries)))
+                  ;(json/get-formated entries)))
+           (GET "/:type" [type]
+                (str type)))
   (route/not-found "Not Found"))
-
-; TODO defhtml
-(defn create-entries-table [entries]
-  (html 
-    [:table {:border "1"}
-     [:tr 
-      (map ;#([:td [:strong %]])
-           #(vector :td [:strong %])
-           table-fields)
-      [:td [:strong "password"]]]
-     (map create-entry entries)]))
-
-; TODO defhtml
-(defn create-entry [entry]
-  (html
-    [:tr
-     (map #(vector :td ((keyword %) entry))
-          table-fields)
-     [:td (security/decrypt (:password entry))]]))
 
 
 (def app
