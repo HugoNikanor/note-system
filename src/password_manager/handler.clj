@@ -4,7 +4,8 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [hiccup.core :refer :all]
             [hiccup.page :refer :all]
-            [password-manager.database :as db]))
+            [password-manager.database :as db]
+            [password-manager.security :as security]))
 
 (declare create-entry)
 (declare create-entries-table)
@@ -12,7 +13,6 @@
 (def table-fields (map str ['service
                             'username
                             'email
-                            'password
                             'date-set
                             'note]))
 
@@ -26,20 +26,24 @@
                   )))
   (route/not-found "Not Found"))
 
+; TODO defhtml
 (defn create-entries-table [entries]
-  (html [:table {:border "1"}
-         [:tr 
-          (map ;#([:td [:strong %]])
-               #(vector :td [:strong %])
-               table-fields)]
-         (map create-entry entries)]))
+  (html 
+    [:table {:border "1"}
+     [:tr 
+      (map ;#([:td [:strong %]])
+           #(vector :td [:strong %])
+           table-fields)
+      [:td [:strong "password"]]]
+     (map create-entry entries)]))
 
 ; TODO defhtml
 (defn create-entry [entry]
   (html
     [:tr
      (map #(vector :td ((keyword %) entry))
-          table-fields)]))
+          table-fields)
+     [:td (security/decrypt (:password entry))]]))
 
 
 (def app
