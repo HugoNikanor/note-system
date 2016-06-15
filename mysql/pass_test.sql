@@ -6,7 +6,7 @@ create table pass_test
 	email varchar(255) NOT NULL DEFAULT "",
 	note varchar(4096),
 	date_set datetime DEFAULT CURRENT_TIMESTAMP,
-	password varchar(255) NOT NULL,
+	password blob NOT NULL,
 	replaced boolean DEFAULT false,
 
 	PRIMARY KEY (id)

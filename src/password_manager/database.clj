@@ -8,6 +8,7 @@
                :password ""})
 
 
+; returns a hashmap
 (defn query [service username email show-old]
   (sql/query database
            [(str "select service, username, email, note, date_set, password
@@ -19,4 +20,9 @@
             (if service (str "%" service "%") "%")
             (if username (str "%" username "%") "%")
             (if email (str "%" email "%") "%")]))
+
+; entry is a hashmap
+(defn insert! [entry]
+  (sql/insert! database :pass_test
+               entry))
 

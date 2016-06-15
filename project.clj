@@ -8,6 +8,7 @@
                  [hiccup "1.0.5"] ; html handling
                  [org.clojure/java.jdbc "0.6.1"]
                  [mysql/mysql-connector-java "5.1.25"]
+                 [org.clojars.tnoda/simple-crypto "0.1.0"]
                  ]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler password-manager.handler/app}
