@@ -6,6 +6,9 @@
 ; this should be properly handled
 (def password "abcdefghijklmnop")
 
+(defn decrypt-password [hash-map]
+  (assoc hash-map :password (decrypt (:password hash-map))))
+
 (defn encrypt [string]
   (crypt/encrypt string password))
 
