@@ -1,0 +1,14 @@
+.hidden {
+	display: none;
+}
+/* Note */
+#note-container > article {
+	border: 1px solid black;
+}
+#node-id-input {
+	width: 3em;
+}
+header {
+	font-size: 3em;
+	border-bottom: 1px solid grey;
+}
