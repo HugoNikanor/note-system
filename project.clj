@@ -1,4 +1,4 @@
-(defproject password-manager "0.1.0-SNAPSHOT"
+(defproject note-server "1.0"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
@@ -12,7 +12,7 @@
                  [org.clojure/data.json "0.2.6"]
                  ]
   :plugins [[lein-ring "0.9.7"]]
-  :ring {:handler password-manager.handler/app}
+  :ring {:handler note-server.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring/ring-mock "0.3.0"]]}})
