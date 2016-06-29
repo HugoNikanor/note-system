@@ -1,4 +1,4 @@
-(ns password-manager.security
+(ns note-server.security
   (:require [org.clojars.tnoda.simple-crypto :as crypt])
   )
 

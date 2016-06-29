@@ -1,6 +1,6 @@
-(ns password-manager.json
+(ns note-server.json
   (:require [clojure.data.json :as json]
-            [password-manager.security :as security])
+            [note-server.security :as security])
   )
 
 ;(declare fix-time)

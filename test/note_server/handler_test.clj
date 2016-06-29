@@ -1,4 +1,4 @@
-(ns password-manager.handler-test
+(ns note-server.handler-test
   (:require [clojure.test :refer :all]
             [ring.mock.request :as mock]
             [password-manager.handler :refer :all]))
