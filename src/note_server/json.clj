@@ -3,7 +3,10 @@
             [note-server.security :as security])
   )
 
-(defn get-formated-note [entry]
-  ;(json/write-str (into {} entry)))
-  (json/write-str (into [] entry)))
-  ;(json/write-str {:id "NaN"}))
+(defn format-notes [entries]
+  (json/write-str (into [] entries)))
+
+(defn error-note []
+  (json/write-str [{:id 0
+                    :header "Note Not Found!"
+                    :body "No note with that id found."}]))

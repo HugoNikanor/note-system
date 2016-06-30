@@ -15,14 +15,11 @@
   (GET "/" [] "Hello World")
   (route/resources "/")
   (context "/note" []
-           ;(context "/:type" [type]
            (GET "/" [id]
-                (let [entry (db/query (str/split id #","))]
-                  (if (zero? (count entry))
-                    (json/get-formated-note [{:id 0
-                                              :header "Note Not Found"
-                                              :body "No note with that id found."}])
-                    (json/get-formated-note entry))))
+                (let [entries (db/query (str/split id #","))]
+                  (if (zero? (count entries))
+                    (json/error-note)
+                    (json/format-notes entries))))
            (GET "/:type" [type]
                 (str type)))
   (route/not-found "Hilarious 404 joke"))
