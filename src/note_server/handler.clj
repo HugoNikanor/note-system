@@ -16,14 +16,20 @@
   (route/resources "/")
   (context "/note" []
            (GET "/" [id]
-                ; str/split crashed if id is nil
-                ; id can be nil if the url contains an unfinished precent encoding
-                (let [entries (db/query (str/split id #","))]
-                  (if (zero? (count entries))
-                    (json/error-note)
-                    (json/format-notes entries))))
+                ; since id can be nil
+                (if id
+                  (let [entries (db/query (str/split id #","))]
+                    (if (zero? (count entries))
+                      (json/error-note)
+                      (json/format-notes entries)))
+                  (json/error-note)))
+           (POST "/submit" [header body]
+                 (db/insert! {:type "note"
+                             :header header
+                             :body body})
+                 "Thanks for your comment")
            (GET "/:type" [type]
-                (str type)))
+                (str "no page: " type)))
   (route/not-found "Hilarious 404 joke"))
 
 
