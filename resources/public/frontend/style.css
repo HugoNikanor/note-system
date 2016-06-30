@@ -1,9 +1,9 @@
 .hidden {
 	display: none;
 }
-/* Note */
-#note-container > article {
-	border: 1px solid black;
+#note-container {
+	width: 100%;
+	/*overflow: wrap;*/
 }
 #node-id-input {
 	width: 3em;
@@ -12,3 +12,20 @@ header {
 	font-size: 3em;
 	border-bottom: 1px solid grey;
 }
+
+/* Note */
+#note-container > article {
+	border: 1px solid black;
+	width: 300px;
+	float: left;
+	background-color: lightYellow;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	margin: 0.5em;
+	/*
+	font-family: sans;
+	font-size: 12px;
+	*/
+}
+#note-container > article > h1 { }
+#note-container > article > p { }
