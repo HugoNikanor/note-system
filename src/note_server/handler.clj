@@ -16,6 +16,8 @@
   (route/resources "/")
   (context "/note" []
            (GET "/" [id]
+                ; str/split crashed if id is nil
+                ; id can be nil if the url contains an unfinished precent encoding
                 (let [entries (db/query (str/split id #","))]
                   (if (zero? (count entries))
                     (json/error-note)

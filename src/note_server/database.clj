@@ -8,21 +8,28 @@
                :password ""})
 
 
-(defn query 
+(defn query
   "Returs a JSON list with objects, as a string"
   [id]
-  (sql/query database
-             (into [] 
-                   (cons 
-                     (str "select id, header, body, type
-                          from note_test 
-                          where id in ("
-                          (apply str 
-                                 (interpose "," 
-                                            (repeat (count id)
-                                                    "?")))
-                          ")")
-                     id))))
+  (defn create-question-marks []
+    (apply str
+           (interpose ","
+                      (repeat (count id)
+                              "?"))))
+  ; this solves the problem with a single comma
+  ; TODO this should possibly be solved higher before query is called
+  (if (zero? (count id))
+    []
+    ; TODO this could probably pe prettied up
+    (sql/query database
+               (into []
+                     (cons
+                       (str "select id, header, body, type
+                            from note_test
+                            where id in ("
+                            (create-question-marks)
+                            ")")
+                       id)))))
 
 
 ; entry is a hashmap
