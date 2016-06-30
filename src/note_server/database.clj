@@ -8,15 +8,21 @@
                :password ""})
 
 
-; returns a hashmap
-(defn query [id]
-  ; TODO support any number of arguments
+(defn query 
+  "Returs a JSON list with objects, as a string"
+  [id]
   (sql/query database
-             [(str "select id, header, body
-                   from note_test 
-                   where id in (?,?)")
-              (first id)
-              (first (rest id))]))
+             (into [] 
+                   (cons 
+                     (str "select id, header, body
+                          from note_test 
+                          where id in ("
+                          (apply str 
+                                 (interpose "," 
+                                            (repeat (count id)
+                                                    "?")))
+                          ")")
+                     id))))
 
 
 ; entry is a hashmap
