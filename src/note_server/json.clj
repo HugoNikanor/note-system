@@ -4,5 +4,6 @@
   )
 
 (defn get-formated-note [entry]
-  (json/write-str (into {} entry)))
+  ;(json/write-str (into {} entry)))
+  (json/write-str (into [] entry)))
   ;(json/write-str {:id "NaN"}))

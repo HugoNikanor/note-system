@@ -10,11 +10,13 @@
 
 ; returns a hashmap
 (defn query [id]
+  ; TODO support any number of arguments
   (sql/query database
              [(str "select id, header, body
                    from note_test 
-                   where id = ?")
-              id]))
+                   where id in (?,?)")
+              (first id)
+              (first (rest id))]))
 
 
 ; entry is a hashmap

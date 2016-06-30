@@ -4,11 +4,13 @@ var getNote = function() {
 	$.get(url, function(rawData) {
 		var data = JSON.parse(rawData);
 		// TODO better html templating
-		$("#note-container").prepend(
-				"<article>"+
-				"<h1>"+data.header+"</h1>"+
-				"<p>"+data.body+"</p>"+
-				"</article>");
+		data.map(function(d) {
+			$("#note-container").prepend(
+					"<article>"+
+					"<h1>"+d.header+"</h1>"+
+					"<p>"+d.body+"</p>"+
+					"</article>");
+		});
 	});
 }
 
@@ -17,6 +19,10 @@ $(document).ready(function() {
 	$("#get-note-button").click(getNote);
 	$("#node-id-input").keypress(function (e) {
 		if(e.which == 13) { getNote(); }
+	});
+
+	$("#clear-notes-button").click(function() {
+		$("#note-container").empty();
 	});
 });
 
