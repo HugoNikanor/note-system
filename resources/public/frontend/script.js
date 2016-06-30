@@ -6,7 +6,7 @@ var getNote = function() {
 		// TODO better html templating
 		data.map(function(d) {
 			$("#note-container").prepend(
-					"<article>"+
+					"<article class="+d.type+">"+
 					"<h1>"+d.header+"</h1>"+
 					"<p>"+d.body+"</p>"+
 					"</article>");
@@ -21,6 +21,7 @@ $(document).ready(function() {
 		if(e.which == 13) { getNote(); }
 	});
 
+	// Sets up "Clear" button
 	$("#clear-notes-button").click(function() {
 		$("#note-container").empty();
 	});

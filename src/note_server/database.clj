@@ -14,7 +14,7 @@
   (sql/query database
              (into [] 
                    (cons 
-                     (str "select id, header, body
+                     (str "select id, header, body, type
                           from note_test 
                           where id in ("
                           (apply str 

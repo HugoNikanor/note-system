@@ -8,5 +8,6 @@
 
 (defn error-note []
   (json/write-str [{:id 0
+                    :type "error"
                     :header "Note Not Found!"
                     :body "No note with that id found."}]))

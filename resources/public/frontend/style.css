@@ -18,7 +18,6 @@ header {
 	border: 1px solid black;
 	width: 300px;
 	float: left;
-	background-color: lightYellow;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 	margin: 0.5em;
@@ -27,5 +26,12 @@ header {
 	font-size: 12px;
 	*/
 }
+#note-container > article.note {
+	background-color: lightYellow;
+}
+#note-container > article.error {
+	background-color: pink;
+}
+
 #note-container > article > h1 { }
 #note-container > article > p { }
