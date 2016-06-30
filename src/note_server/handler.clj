@@ -17,8 +17,7 @@
            ;(context "/:type" [type]
            (GET "/" [id]
                 (let [entry (db/query id)]
-                  (html/get-formated-note (into {} entry))))
-                  ;(json/get-formated entries)))
+                  (json/get-formated-note entry)))
            (GET "/:type" [type]
                 (str type)))
   (route/not-found "Not Found"))

@@ -1,8 +1,14 @@
 var getNote = function() {
 	var id = $("#node-id-input").val();
 	var url = "http://localhost:3000/note?id=" + id;
-	$.get(url, function(data) {
-		$("#note-container").prepend(data);
+	$.get(url, function(rawData) {
+		var data = JSON.parse(rawData);
+		// TODO better html templating
+		$("#note-container").prepend(
+				"<article>"+
+				"<h1>"+data.header+"</h1>"+
+				"<p>"+data.body+"</p>"+
+				"</article>");
 	});
 }
 
