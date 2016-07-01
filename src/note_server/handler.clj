@@ -8,6 +8,7 @@
             [note-server.security :as security]
             [note-server.html :as html]
             [note-server.json :as json]
+            [clojure.data.json :as j] ; TODO proper import names
             [hiccup.core :refer :all]
             [hiccup.page :refer :all]
             [other.call :refer :all]
@@ -29,10 +30,10 @@
              (GET "/raw" [] *anti-forgery-token*)
              (GET "/html" [] (anti-forgery-field)))
            (POST "/submit" [header body]
-                 (db/insert! {:type "note"
-                             :header header
-                             :body body})
-                 "Thanks for your comment")
+                 (j/write-str
+                   (db/insert! {:type "note"
+                                :header header
+                                :body body})))
            (GET "/:type" [type]
                 (str "no page: " type)))
   (route/not-found "Hilarious 404 joke"))

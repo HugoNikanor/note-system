@@ -35,6 +35,7 @@
 ; entry is a hashmap
 (defn insert! [entry]
   (println (str "┃" entry))
+  ; This returns ({:generated_key [id]})
   (sql/insert! database :note_test
                entry))
 
