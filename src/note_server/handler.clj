@@ -1,4 +1,6 @@
 (ns note-server.handler
+  (:use ring.middleware.anti-forgery
+        ring.util.anti-forgery)
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
@@ -13,8 +15,8 @@
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
-  (route/resources "/")
   (context "/note" []
+           (route/resources "/")
            (GET "/" [id]
                 ; since id can be nil
                 (if id
@@ -23,6 +25,9 @@
                       (json/error-note)
                       (json/format-notes entries)))
                   (json/error-note)))
+           (context "/token" []
+             (GET "/raw" [] *anti-forgery-token*)
+             (GET "/html" [] (anti-forgery-field)))
            (POST "/submit" [header body]
                  (db/insert! {:type "note"
                              :header header

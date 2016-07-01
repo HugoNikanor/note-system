@@ -11,29 +11,30 @@
 (defn query
   "Returs a JSON list with objects, as a string"
   [id]
-  (defn create-question-marks []
+  (defn create-question-marks [no]
     (apply str
            (interpose ","
-                      (repeat (count id)
-                              "?"))))
+                      (repeat no "?"))))
   ; this solves the problem with a single comma
   ; TODO this should possibly be solved higher before query is called
-  (if (zero? (count id))
-    []
-    ; TODO this could probably pe prettied up
-    (sql/query database
-               (into []
-                     (cons
-                       (str "select id, header, body, type
-                            from note_test
-                            where id in ("
-                            (create-question-marks)
-                            ")")
-                       id)))))
+  (let [no (count id)]
+    (if (zero? no)
+      []
+      ; TODO this could probably be prettied up
+      (sql/query database
+                 (into []
+                       (cons
+                         (str "select id, header, body, type
+                              from note_test
+                              where id in ("
+                              (create-question-marks no)
+                              ")")
+                         id))))))
 
 
 ; entry is a hashmap
 (defn insert! [entry]
-  (sql/insert! database :pass_test
+  (println (str "┃" entry))
+  (sql/insert! database :note_test
                entry))
 

@@ -25,5 +25,9 @@ $(document).ready(function() {
 	$("#clear-notes-button").click(function() {
 		$("#note-container").empty();
 	});
+
+	$.get("/note/token/html", function (data) {
+		$("#comment-form").append(data);
+	});
 });
 
