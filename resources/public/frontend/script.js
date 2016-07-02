@@ -48,5 +48,8 @@ $(document).ready(function() {
 			getNote(key.generated_key);
 		});
 	});
+
+	// add all notes from the server to start with
+	getNotes("http://localhost:3000/note/all");
 });
 
