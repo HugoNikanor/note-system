@@ -14,22 +14,43 @@ var enableCheckboxList = function() {
 		// TODO can I handle the anti forgery token like this?
 		$.get("http://localhost:3000/note/token/raw", function(token) {
 			$.post("http://localhost:3000/note/list/set-checkbox",
-				  {
-					"list-id": el.data("listId"),
-					"id": el.data("id"),
-					"new-value": newValue,
-					"__anti-forgery-token": token,
-				  });
+					{
+						"list-id": el.data("listId"),
+						"id": el.data("id"),
+						"new-value": newValue,
+						"__anti-forgery-token": token,
+					});
 		});
+	});
+
+	/*
+	$(".checkbox-list").find(".new-item").find("input").keypress(function(e) {
+		if(e.which == 13) {
+			$.post("http://localhost:3000/note/list/add-item",
+					{
+						"list-id": 36,
+						"text": t
+		}
+	});
+	*/
+
+}
+
+var enableCheckboxForms = function() {
+	$(".checkbox-list").children("form").ajaxForm(function(data) {
+		console.log(data);
+		return false;
 	});
 }
 
 // TODO possibly rewrite this without mutation
 var createHTMLList = function(json) {
 	var bullets = "";
+	var id;
 	json.map(function(item) {
 		// item.done to see check-mark status
 		console.log(item);
+		id = item.list_id;
 		var checked = "";
 		if(item.done) {
 			checked = " checked";
@@ -47,6 +68,9 @@ var createHTMLList = function(json) {
 			item.text+
 			"</li>";
 	});
+	bullets += "<li class='new-item'>"
+	bullets += "<input name='text' type='text' placeholder='new note' />"
+	bullets += "</li>";
 	return "<ul class='checkbox-list'>"+bullets+"</ul>";
 }
 
@@ -68,9 +92,11 @@ var createNote = function(json) {
 	       "</article>"
 	);
 
-	$.getJSON("http://localhost:3000/note/list?id="+id, function(list) {
-		$("#" + noteId).children(".note-footer").before(createHTMLList(list)); 
-	});
+	if(type == "list") {
+		$.getJSON("http://localhost:3000/note/list?id="+id, function(list) {
+			$("#" + noteId).children(".note-footer").before(createHTMLList(list)); 
+		});
+	}
 }
 
 var getNotes = function(url) {

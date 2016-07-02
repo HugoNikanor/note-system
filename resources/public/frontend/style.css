@@ -46,8 +46,33 @@ header {
 
 .checkbox-list > li {
 	cursor: pointer;
+	list-style-position: outside;
 }
 .checkbox-list > li.checked {
 	text-decoration: line-through;
 	color: gray;
+}
+/* TODO actually format this so it matches the other ones */
+.checkbox-list > li.new-item {
+	list-style: none;
+}
+.checkbox-list > li.new-item:before {
+	content: "+";
+	margin-left: -1em;
+	margin-right: 0.5em;
+}
+.checkbox-list > li.new-item > form {
+	margin: 0px;
+	padding: 0px;
+}
+.checkbox-list > li.new-item input {
+	border: none;
+	background-color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.checkbox-list form {
+	margin: 0px;
+	padding: 0px;
 }
