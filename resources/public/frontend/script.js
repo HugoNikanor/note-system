@@ -1,25 +1,30 @@
-var getNote = function(id) {
-	var url = "http://localhost:3000/note?id=" + id;
+var formatHTMLNote = function(jsonObject) {
+	return "<article class="+jsonObject.type+">"+
+		   "<h1>"+jsonObject.header+"</h1>"+
+		   "<p>"+jsonObject.body+"</p>"+
+		   "<span class='note-no'>id: "+jsonObject.id+"</span>"+
+		   "</article>";
+}
+
+var getNotes = function(url) {
 	$.get(url, function(rawData) {
 		var data = JSON.parse(rawData);
-		// TODO better html templating
-		data.map(function(d) {
-			$("#note-container").prepend(
-					"<article class="+d.type+">"+
-					"<h1>"+d.header+"</h1>"+
-					"<p>"+d.body+"</p>"+
-					"</article>");
-		});
+		$("#note-container").prepend(data.map(formatHTMLNote));
 	});
+}
+
+var getNotesById = function(id) {
+	var url = "http://localhost:3000/note?id=" + id;
+	getNotes(url);
 }
 
 $(document).ready(function() {
 	// Sets up note request fields
 	$("#get-note-button").click(function () {
-		getNote($("#node-id-input").val());
+		getNoteById($("#node-id-input").val());
 	});
 	$("#node-id-input").keypress(function (e) {
-		if(e.which == 13) { getNote($("#node-id-input").val()); }
+		if(e.which == 13) { getNoteById($("#node-id-input").val()); }
 	});
 
 	// Sets up "Clear" button
@@ -27,6 +32,10 @@ $(document).ready(function() {
 		$("#note-container").empty();
 	});
 
+	// adds authorization key to POST form
+	// TODO this should probably be run upon submit
+	// TODO since it currently requires you to submit the note
+	// TODO quite soon after opening the page
 	$.get("/note/token/html", function (data) {
 		$("#comment-form").append(data);
 	});
