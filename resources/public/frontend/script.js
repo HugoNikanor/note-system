@@ -1,10 +1,23 @@
 var enableCheckboxList = function() {
 	$(".checkbox-list").find("li").click(function(event) {
-		var el = $(event.toElement);
-		if(el.hasClass("checked"))
+		el = $(event.toElement);
+
+		var newValue;
+		if(el.hasClass("checked")) {
+			newValue = 0;
 			el.removeClass("checked");
-		else
+		} else {
+			newValue = 1;
 			el.addClass("checked");
+		}
+
+		// TODO this should be post, once I have updated the server
+		$.get("http://localhost:3000/note/list/set-checkbox",
+		      {
+		      	"list-id": el.attr("data-list-id"),
+		      	"id": el.attr("data-id"),
+		      	"new-value": newValue
+		      });
 	});
 }
 
@@ -20,11 +33,13 @@ var createHTMLList = function(json) {
 		}
 		bullets +=
 			"<li class='"+
-			"-"+
-			item.list_id+
-			"-"+
-			item.id+
 			checked+
+			"' "+
+			"data-list-id='"+
+			item.list_id+
+			"' "+
+			"data-id='"+
+			item.id+
 			"'>"+
 			item.text+
 			"</li>";
