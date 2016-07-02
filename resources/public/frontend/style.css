@@ -57,6 +57,7 @@ header {
 	list-style: none;
 }
 .checkbox-list > li.new-item:before {
+	/*＋*/
 	content: "+";
 	margin-left: -1em;
 	margin-right: 0.5em;
@@ -73,6 +74,5 @@ header {
 }
 
 .checkbox-list form {
-	margin: 0px;
-	padding: 0px;
+	display: inline;
 }

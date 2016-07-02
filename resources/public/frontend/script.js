@@ -68,8 +68,11 @@ var createHTMLList = function(json) {
 			item.text+
 			"</li>";
 	});
-	bullets += "<li class='new-item'>"
-	bullets += "<input name='text' type='text' placeholder='new note' />"
+	// TODO form action
+	bullets += "<li class='new-item'>";
+	bullets += "<form>";
+	bullets += "<input required name='text' type='text' placeholder='new note' />";
+	bullets += "</form>";
 	bullets += "</li>";
 	return "<ul class='checkbox-list'>"+bullets+"</ul>";
 }
@@ -102,6 +105,7 @@ var createNote = function(json) {
 var getNotes = function(url) {
 	$.getJSON(url, function(data) {
 		data.map(createNote);
+		enableCheckboxList();
 	});
 }
 
@@ -144,7 +148,7 @@ $(document).ready(function() {
 	// add all notes from the server to start with
 	getNotes("http://localhost:3000/note/all");
 
-	enableCheckboxList();
+	//enableCheckboxList();
 
 });
 
