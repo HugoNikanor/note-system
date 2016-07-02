@@ -44,6 +44,15 @@
                               ")")
                          ids))))))
 
+; TODO maybe this function should be typed...
+; new-value should be supplied as zero or one, for false or true
+(defn change-checkbox! [list-id id new-value]
+  (sql/update! database :note_list
+               {:done new-value}
+               ["list_id = ? and id = ?"
+                list-id
+                id]))
+
 
 ; entry is a hashmap
 (defn insert! [entry]

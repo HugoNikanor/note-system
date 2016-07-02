@@ -29,11 +29,15 @@
            ; TODO filter?
            (GET "/all" []
                 (json/format-notes (db/query-all)))
-           (GET "/list" [id]
-                (json/format-notes (db/query-list id)))
+           ;(GET "/list" [id]
+           (context "/list" []
+                    (GET "/" [id]
+                         (json/format-notes (db/query-list id)))
+                    (GET "/set-checkbox" [list-id id new-value]
+                         (db/change-checkbox! list-id id new-value)))
            (context "/token" []
-             (GET "/raw" [] *anti-forgery-token*)
-             (GET "/html" [] (anti-forgery-field)))
+                    (GET "/raw" [] *anti-forgery-token*)
+                    (GET "/html" [] (anti-forgery-field)))
            (POST "/submit" [header body]
                  (j/write-str
                    (db/insert! {:type "note"
