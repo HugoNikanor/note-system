@@ -29,6 +29,8 @@
            ; TODO filter?
            (GET "/all" []
                 (json/format-notes (db/query-all)))
+           (GET "/list" [id]
+                (json/format-notes (db/query-list id)))
            (context "/token" []
              (GET "/raw" [] *anti-forgery-token*)
              (GET "/html" [] (anti-forgery-field)))

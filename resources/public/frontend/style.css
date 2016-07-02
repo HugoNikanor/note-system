@@ -32,11 +32,19 @@ header {
 #note-container > article.error {
 	background-color: pink;
 }
+#note-container > article.list {
+	background-color: lightGreen;
+}
 
 #note-container > article > h1 { }
 #note-container > article > p { }
-#note-container > article >  .note-no {
+#note-container > article > .note-footer > .id {
 	float: right;
 	color: grey;
 	font-size: 10pt;
+}
+
+.checkbox-list > li.checked {
+	text-decoration: line-through;
+	color: gray;
 }

@@ -16,6 +16,11 @@
               ;ORDER BY id DESC
               ]))
 
+(defn query-list [id]
+  (sql/query database
+             ["SELECT * FROM note_list WHERE list_id LIKE ?"
+              id]))
+
 (defn query
   "Returs a hashmap list"
   [ids]

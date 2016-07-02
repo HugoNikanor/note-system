@@ -1,16 +1,49 @@
-var formatHTMLNote = function(jsonObject) {
-	return "<article class="+jsonObject.type+">"+
-		   "<h1>"+jsonObject.header+"</h1>"+
-		   "<p>"+jsonObject.body+"</p>"+
-		   "<span class='note-no'>id: "+jsonObject.id+"</span>"+
-		   "</article>";
+var enableCheckboxList = function() {
+	$(".checkbox-list").find("li").click(function(event) {
+		var el = $(event.toElement);
+		if(el.hasClass("checked"))
+			el.removeClass("checked");
+		else
+			el.addClass("checked");
+	});
+}
+
+// TODO possibly rewrite this without mutation
+var createHTMLList = function(json) {
+	var bullets = "";
+	json.map(function(item) {
+		// item.done to see check-mark status
+		bullets += "<li>"+item.text+"</li>";
+	});
+	return "<ul class='checkbox-list'>"+bullets+"</ul>";
+}
+
+var createNote = function(json) {
+	var id = json.id;
+	var header = json.header;
+	var type = json.type;
+	var body = json.body;
+
+	var noteId = "note-" + id;
+
+	$("#note-container").prepend(
+	       "<article id='"+noteId+"' class='"+type+"'>"+
+	       "<h1>"+header+"</h1>"+
+	       "<p>"+body+"</p>"+
+	       "<div class='note-footer'>"+
+		   "<span class='id'>id: "+id+"</span>"+
+		   "</div>"+
+	       "</article>"
+	);
+
+	$.getJSON("http://localhost:3000/note/list?id="+id, function(list) {
+		$("#" + noteId).children(".note-footer").before(createHTMLList(list)); 
+	});
 }
 
 var getNotes = function(url) {
-	$.get(url, function(rawData) {
-		var data = JSON.parse(rawData);
-		$("#note-container")
-			.prepend(data.map(formatHTMLNote).reverse());
+	$.getJSON(url, function(data) {
+		data.map(createNote);
 	});
 }
 
@@ -52,5 +85,8 @@ $(document).ready(function() {
 
 	// add all notes from the server to start with
 	getNotes("http://localhost:3000/note/all");
+
+	enableCheckboxList();
+
 });
 
