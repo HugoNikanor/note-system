@@ -44,6 +44,9 @@ header {
 	font-size: 10pt;
 }
 
+.checkbox-list > li {
+	cursor: pointer;
+}
 .checkbox-list > li.checked {
 	text-decoration: line-through;
 	color: gray;
