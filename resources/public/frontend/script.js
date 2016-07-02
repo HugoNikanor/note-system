@@ -11,13 +11,16 @@ var enableCheckboxList = function() {
 			el.addClass("checked");
 		}
 
-		// TODO this should be post, once I have updated the server
-		$.get("http://localhost:3000/note/list/set-checkbox",
-		      {
-		      	"list-id": el.data("listId"),
-		      	"id": el.data("id"),
-		      	"new-value": newValue
-		      });
+		// TODO can I handle the anti forgery token like this?
+		$.get("http://localhost:3000/note/token/raw", function(token) {
+			$.post("http://localhost:3000/note/list/set-checkbox",
+				  {
+					"list-id": el.data("listId"),
+					"id": el.data("id"),
+					"new-value": newValue,
+					"__anti-forgery-token": token,
+				  });
+		});
 	});
 }
 

@@ -33,8 +33,8 @@
            (context "/list" []
                     (GET "/" [id]
                          (json/format-notes (db/query-list id)))
-                    (GET "/set-checkbox" [list-id id new-value]
-                         (db/change-checkbox! list-id id new-value)))
+                    (POST "/set-checkbox" [list-id id new-value]
+                          (db/change-checkbox! list-id id new-value)))
            (context "/token" []
                     (GET "/raw" [] *anti-forgery-token*)
                     (GET "/html" [] (anti-forgery-field)))
