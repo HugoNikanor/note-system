@@ -26,6 +26,9 @@
                       (json/error-note)
                       (json/format-notes entries)))
                   (json/error-note)))
+           ; TODO filter?
+           (GET "/all" []
+                (json/format-notes (db/query-all)))
            (context "/token" []
              (GET "/raw" [] *anti-forgery-token*)
              (GET "/html" [] (anti-forgery-field)))

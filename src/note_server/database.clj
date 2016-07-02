@@ -7,17 +7,25 @@
                :user "root"
                :password ""})
 
+(defn query-all
+  "Returs a hashmap list"
+  [& [options]]
+  (sql/query database
+             ["SELECT id, header, body, type
+              FROM note_test"
+              ;ORDER BY id DESC
+              ]))
 
 (defn query
-  "Returs a JSON list with objects, as a string"
-  [id]
+  "Returs a hashmap list"
+  [ids]
   (defn create-question-marks [no]
     (apply str
            (interpose ","
                       (repeat no "?"))))
   ; this solves the problem with a single comma
   ; TODO this should possibly be solved higher before query is called
-  (let [no (count id)]
+  (let [no (count ids)]
     (if (zero? no)
       []
       ; TODO this could probably be prettied up
@@ -29,7 +37,7 @@
                               where id in ("
                               (create-question-marks no)
                               ")")
-                         id))))))
+                         ids))))))
 
 
 ; entry is a hashmap
