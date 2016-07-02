@@ -9,7 +9,8 @@ var formatHTMLNote = function(jsonObject) {
 var getNotes = function(url) {
 	$.get(url, function(rawData) {
 		var data = JSON.parse(rawData);
-		$("#note-container").prepend(data.map(formatHTMLNote));
+		$("#note-container")
+			.prepend(data.map(formatHTMLNote).reverse());
 	});
 }
 
@@ -21,10 +22,10 @@ var getNotesById = function(id) {
 $(document).ready(function() {
 	// Sets up note request fields
 	$("#get-note-button").click(function () {
-		getNoteById($("#node-id-input").val());
+		getNotesById($("#node-id-input").val());
 	});
 	$("#node-id-input").keypress(function (e) {
-		if(e.which == 13) { getNoteById($("#node-id-input").val()); }
+		if(e.which == 13) { getNotesById($("#node-id-input").val()); }
 	});
 
 	// Sets up "Clear" button
@@ -45,7 +46,7 @@ $(document).ready(function() {
 	$("#comment-form").ajaxForm(function(data) {
 		// Data is the server response
 		JSON.parse(data).map(function(key) {
-			getNote(key.generated_key);
+			getNotesById(key.generated_key);
 		});
 	});
 
