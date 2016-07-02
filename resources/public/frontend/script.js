@@ -13,7 +13,21 @@ var createHTMLList = function(json) {
 	var bullets = "";
 	json.map(function(item) {
 		// item.done to see check-mark status
-		bullets += "<li>"+item.text+"</li>";
+		console.log(item);
+		var checked = "";
+		if(item.done) {
+			checked = " checked";
+		}
+		bullets +=
+			"<li class='"+
+			"-"+
+			item.list_id+
+			"-"+
+			item.id+
+			checked+
+			"'>"+
+			item.text+
+			"</li>";
 	});
 	return "<ul class='checkbox-list'>"+bullets+"</ul>";
 }
