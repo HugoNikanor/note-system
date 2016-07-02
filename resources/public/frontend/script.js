@@ -1,6 +1,6 @@
 var enableCheckboxList = function() {
 	$(".checkbox-list").find("li").click(function(event) {
-		el = $(event.toElement);
+		var el = $(event.toElement);
 
 		var newValue;
 		if(el.hasClass("checked")) {
@@ -14,8 +14,8 @@ var enableCheckboxList = function() {
 		// TODO this should be post, once I have updated the server
 		$.get("http://localhost:3000/note/list/set-checkbox",
 		      {
-		      	"list-id": el.attr("data-list-id"),
-		      	"id": el.attr("data-id"),
+		      	"list-id": el.data("listId"),
+		      	"id": el.data("id"),
 		      	"new-value": newValue
 		      });
 	});
