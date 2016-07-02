@@ -35,3 +35,8 @@ header {
 
 #note-container > article > h1 { }
 #note-container > article > p { }
+#note-container > article >  .note-no {
+	float: right;
+	color: grey;
+	font-size: 10pt;
+}
