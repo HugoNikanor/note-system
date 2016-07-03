@@ -110,13 +110,13 @@ var createNote = function(json) {
 			// this enables the "clickability" of the list items
 			items.click(enableCheckbox);
 
-			note.children(".note-footer").before(items);
+			note.children("footer").before(items);
 
 			// adds the new-item form for the bullet list
 			var source = $("#new-bullet-template").html();
 			var template = Handlebars.compile(source);
 			var form = template(json);
-			note.children(".note-footer").siblings("ul").append(form);
+			note.children("footer").siblings("ul").append(form);
 
 			var form = note.find("form[name=new-bullet]");
 			form.submit(newBulletSubmit);
