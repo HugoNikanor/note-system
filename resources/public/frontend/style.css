@@ -71,6 +71,7 @@ header {
 	background-color: inherit;
 	font-family: inherit;
 	font-size: inherit;
+	margin-left: -3px;
 }
 
 .checkbox-list form {
