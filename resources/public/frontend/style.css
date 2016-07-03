@@ -35,6 +35,14 @@ header {
 #note-container > article.list {
 	background-color: lightGreen;
 }
+#note-container > article.new-note {
+	background-color: lightBlue;
+}
+#note-container > article.new-note textarea {
+	/*background-color: red;*/
+	width: 100%;
+	overflow: wrap;
+}
 
 #note-container > article > h1 { }
 #note-container > article > p { }
@@ -70,11 +78,13 @@ header {
 	margin-left: -3px;
 }
 
-input.seamless {
+/* possibly limit this to input ([type="text"]?) and textarea */
+.seamless {
 	border: none;
 	background-color: inherit;
 	font-family: inherit;
 	font-size: inherit;
+	font-weight: inherit;
 }
 
 .checkbox-list form {

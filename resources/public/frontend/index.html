@@ -20,6 +20,18 @@
 				</div>
 			</article>
 		</span>
+		<span id="new-note-template">
+			<article class="new-note">
+				<form name="new-note">
+					<h1><input required class="seamless" type="text" name="header" placeholder="New note"/></h1>
+					<p><textarea required rows=8 name="body" class="seamless" placeholder="Compose new note..."></textarea></p>
+					<input type="submit"/>
+				</form>
+				<div class="note-footer">
+					<span class="id">id: New</span>
+				</div>
+			</article>
+		</span>
 		<span id="single-bullet-template">
 			<li class="{{checked}}" data-list-id="{{list_id}}" data-id="{{id}}">{{text}}</li>
 		</span>

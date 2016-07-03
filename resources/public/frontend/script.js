@@ -72,6 +72,7 @@ var newBulletSubmit = function(event) {
 
 				// possibly better parent finding
 				// should be nearest <li> element
+				// TODO this is sometimes called twice
 				form.parent().before(template(json));
 
 				textArea.val("");
@@ -96,14 +97,17 @@ var createNote = function(json) {
 var getNotes = function(url) {
 	$.getJSON(url, function(data) {
 		data.map(createNote);
-		// TODO this isn't propely applied here
-		enableCheckboxList();
 	});
 }
 
 var getNotesById = function(id) {
 	var url = "http://localhost:3000/note?id=" + id;
 	getNotes(url);
+}
+
+var afterInit = function() {
+	$("#note-container").prepend( Handlebars.compile($("#new-note-template").html())());
+	enableCheckboxList();
 }
 
 $(document).ready(function() {
@@ -140,7 +144,8 @@ $(document).ready(function() {
 	// add all notes from the server to start with
 	getNotes("http://localhost:3000/note/all");
 
-	//enableCheckboxList();
+	// TODO this is uggly!
+	setTimeout(afterInit, 1500);
 
 });
 
