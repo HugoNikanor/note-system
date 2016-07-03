@@ -28,6 +28,10 @@ input.seamless, textarea.seamless {
 	*/
 }
 
+#note-container > article > p > textarea {
+	width: 100%;
+}
+
 /*
  * Note type background
  * In the future this will probably be replaced

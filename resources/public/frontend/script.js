@@ -36,6 +36,7 @@ var enableCheckbox = function(event) {
 				"id": el.data("id"),
 				"new-value": newValue,
 			});
+	event.stopPropagation();
 }
 
 /*
@@ -93,14 +94,35 @@ var newBulletSubmit = function(event) {
 
 /*
  * This takes a note in json form and adds it it in html form to the dom
- * If the note is a list it also fetches the list items, and adds 
+ * If the note is a list it also fetches the list items, and adds
  * them to the dom
  */
 var createNote = function(json) {
 	var template = Handlebars.compile($("#note-template").html());
 
+	var note = $(template(json));
+
+	// trigers for the header
+	note.find("h1").click(function (event) {
+		var element = $(event.currentTarget);
+
+		if(!element.find("input").is(":focus"))
+			makeNoteEditable(element);
+		event.stopPropagation();
+	});
+
+	// trigers for the rest of the note
+	// but not the lists, since they are checked for event propagation before
+	note.click(function(event) {
+		var element = $(event.currentTarget);
+
+		if(!element.find("textarea").is(":focus"))
+			makeNoteEditable(element);
+		event.stopPropagation();
+	});
+
 	//$("#note-container").prepend(template(json));
-	$("#note-container").find(".new-note").after(template(json));
+	$("#note-container").find(".new-note").after(note);
 
 	if(json.type == "list") {
 		$.getJSON("/note/list?id="+json.id, function(list) {
@@ -166,6 +188,50 @@ var newNoteForm = function(event) {
 			});
 
 	form[0].reset();
+}
+
+/*
+ * Makes the node editable.
+ * Currently only works with articles which have one <p> child,
+ * or <h1>
+ *
+ * TODO make <input> submit also work with enter
+ */
+var makeNoteEditable = function(inObject) {
+	var object;
+	var id;
+	var input;
+	var type;
+
+	if(inObject.is("h1")) {
+		object = inObject;
+		id = object.closest("article").data("id");
+		var text = object.text();
+		input = $("<input type='text' class='seamless' value='"+text+"'/>");
+		type = "header";
+	} else {
+		object = inObject.find("p");
+		id = inObject.data("id");
+		var text = object.text();
+		input = $("<textarea class='seamless'>"+text+"</textarea>");
+		type = "body";
+	}
+
+	object.html(input);
+
+	// update dom with new data on
+	// also send new data to server
+	input.focusout(function (event) {
+		var newData = event.currentTarget.value;
+		object.html(newData);
+
+		var json = { "id": id, };
+		json[type] = newData;
+
+		post("/note/update", json);
+	});
+
+	input.focus();
 }
 
 $(document).ready(function() {

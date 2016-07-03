@@ -58,7 +58,15 @@
                {:list_id list-id
                 :text text}))
 
-
+(defn update-note! [id header body]
+  (sql/update! database :note_test
+               (merge {}
+                      (if header
+                        {:header header})
+                      (if body
+                        {:body body}))
+               ["id = ?"
+                id]))
 
 ; entry is a hashmap
 (defn insert! [entry]

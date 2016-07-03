@@ -41,6 +41,8 @@
            (context "/token" []
                     (GET "/raw" [] *anti-forgery-token*)
                     (GET "/html" [] (anti-forgery-field)))
+           (POST "/update" [id header body]
+                 (j/write-str (db/update-note! id header body)))
            (POST "/submit" [header body type]
                  (j/write-str
                    (db/insert! {:type type
