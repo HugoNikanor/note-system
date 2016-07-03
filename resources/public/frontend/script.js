@@ -110,8 +110,34 @@ var getNotesById = function(id) {
 	getNotes(url);
 }
 
+var newNoteForm = function(event) {
+	//console.log(event);
+	event.preventDefault();
+	var form = $(event.target);
+
+	var json =
+	{
+		"header": form.find("input[name=header]").val(),
+		"body": form.find("textarea[name=body]").val(),
+		"type": "note"
+	}
+
+	post("/note/submit", json,
+			function (response) {
+				var key = JSON.parse(response)[0].generated_key;
+				getNotesById(key);
+			});
+
+	form[0].reset();
+}
+
 var afterInit = function() {
-	$("#note-container").prepend( Handlebars.compile($("#new-note-template").html())());
+	var source = $("#new-note-template").html()
+	var template = Handlebars.compile(source);
+	var form = $(template());
+	$("#note-container").prepend(form);
+
+	form.submit(newNoteForm);
 }
 
 
@@ -137,6 +163,7 @@ $(document).ready(function() {
 		$("#comment-form").append(data);
 	});
 
+	/*
 	// this still publishes the data to the "value" url
 	// but runs this function instead of redirecting
 	$("#comment-form").ajaxForm(function(data) {
@@ -145,11 +172,13 @@ $(document).ready(function() {
 			getNotesById(key.generated_key);
 		});
 	});
+	*/
 
 	// add all notes from the server to start with
 	getNotes("/note/all");
 
 	// TODO this is ugly!
 	setTimeout(afterInit, 1500);
+
 });
 
