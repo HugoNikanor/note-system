@@ -31,15 +31,6 @@ var enableCheckboxList = function() {
 
 }
 
-/*
-var enableCheckboxForms = function() {
-	$(".checkbox-list").children("form").ajaxForm(function(data) {
-		console.log(data);
-		return false;
-	});
-}
-*/
-
 var createHTMLList = function(json) {
 	var bullets = "";
 	var bulletTemplate = Handlebars.compile($("#single-bullet-template").html());
@@ -62,15 +53,11 @@ var newBulletSubmit = function(event) {
 	var text = textArea.val();
 	var listId = form.data("listId");
 	
-	var json =
+	post("http://localhost:3000/note/list/add-item",
 			{
 				"list-id": listId,
 				"text": text
-			};
-
-
-	post("http://localhost:3000/note/list/add-item",
-			json,
+			},
 			function(resp) {
 				// resp [{"generated_key": 6}]
 				var json =
@@ -81,11 +68,11 @@ var newBulletSubmit = function(event) {
 					"id": JSON.parse(resp)[0].generated_key
 				}
 
-				var htmlStr = Handlebars.compile($("#single-bullet-template").html())( json );
+				var template = Handlebars.compile($("#single-bullet-template").html());
 
 				// possibly better parent finding
 				// should be nearest <li> element
-				form.parent().before(htmlStr);
+				form.parent().before(template(json));
 
 				textArea.val("");
 			});
@@ -95,9 +82,7 @@ var newBulletSubmit = function(event) {
 var createNote = function(json) {
 	var template = Handlebars.compile($("#note-template").html());
 
-	$("#note-container").prepend(
-		template(json)
-	);
+	$("#note-container").prepend(template(json));
 
 	if(json.type == "list") {
 		$.getJSON("http://localhost:3000/note/list?id="+json.id, function(list) {
@@ -111,6 +96,7 @@ var createNote = function(json) {
 var getNotes = function(url) {
 	$.getJSON(url, function(data) {
 		data.map(createNote);
+		// TODO this isn't propely applied here
 		enableCheckboxList();
 	});
 }
