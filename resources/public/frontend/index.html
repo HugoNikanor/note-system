@@ -11,24 +11,11 @@
 <body>
 	<span class="hidden templates">
 		<span id="note-template">
-			<!-- TODO possibly remove html id from here -->
 			<article data-id={{id}} id="note-{{id}}" class="{{type}}">
 				<h1>{{header}}</h1>
 				<p>{{body}}</p>
 				<div class="note-footer">
 					<span class="id">id: {{id}}</span>
-				</div>
-			</article>
-		</span>
-		<span id="new-note-template">
-			<article class="new-note">
-				<form name="new-note">
-					<h1><input required class="seamless" type="text" name="header" placeholder="New note"/></h1>
-					<p><textarea required rows=8 name="body" class="seamless" placeholder="Compose new note..."></textarea></p>
-					<input type="submit"/>
-				</form>
-				<div class="note-footer">
-					<span class="id">id: New</span>
 				</div>
 			</article>
 		</span>
@@ -46,8 +33,17 @@
 		</span>
 	</span>
 
-	<header>Notes:</header>
-
-	<section id="note-container" />
+	<section id="note-container">
+		<article class="new-note">
+			<form name="new-note">
+				<h1><input class="seamless" type="text" name="header" placeholder="New note"/></h1>
+				<p><textarea required rows=8 name="body" class="seamless" placeholder="Compose new note..."></textarea></p>
+				<input type="submit"/>
+			</form>
+			<div class="note-footer">
+				<span class="id">id: New</span>
+			</div>
+		</article>
+	</section>
 </body>
 </html>
