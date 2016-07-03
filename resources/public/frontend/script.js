@@ -37,9 +37,7 @@ var createHTMLList = function(json) {
 			item.checked = "checked";
 		bullets += bulletTemplate(item);
 	});
-	// TODO maybe get the list-id in a prettier way
-	// TODO this will break whene there are 0 nodes in the list
-	bullets += Handlebars.compile($("#new-bullet-template").html())(json[0]);
+
 	return "<ul class='checkbox-list'>"+bullets+"</ul>";
 }
 
@@ -93,6 +91,13 @@ var createNote = function(json) {
 			items.click(enableCheckbox);
 
 			note.children(".note-footer").before(items);
+
+			// adds the new-item form for the bullet list
+			var source = $("#new-bullet-template").html();
+			var template = Handlebars.compile(source);
+			var form = template(json);
+			note.children(".note-footer").siblings("ul").append(form);
+
 			var form = note.find("form[name=new-bullet]");
 			form.submit(newBulletSubmit);
 		});

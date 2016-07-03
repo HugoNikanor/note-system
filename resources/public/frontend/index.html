@@ -12,7 +12,8 @@
 <body>
 	<span class="hidden templates">
 		<span id="note-template">
-			<article id="note-{{id}}" class="{{type}}">
+			<!-- TODO possibly remove html id from here -->
+			<article data-id={{id}} id="note-{{id}}" class="{{type}}">
 				<h1>{{header}}</h1>
 				<p>{{body}}</p>
 				<div class="note-footer">
@@ -37,10 +38,10 @@
 		</span>
 		<span id="new-bullet-template">
 			<li class="new-item">
-				<form data-list-id="{{list_id}}" name="new-bullet">
+				<form data-list-id="{{id}}" name="new-bullet">
 					<input required class="seamless" name="text" type="text" placeholder="new note" />
 					<input type="submit" class="seamless" value="→" />
-					<input type="hidden" name="list-id" value="{{list_id}}"/>
+					<input type="hidden" name="list-id" value="{{id}}"/>
 				</form>
 			</li>
 		</span>
