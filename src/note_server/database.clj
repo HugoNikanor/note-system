@@ -52,6 +52,7 @@
                ["list_id = ? and id = ?"
                 list-id
                 id]))
+
 (defn insert-list-item! [list-id text]
   (sql/insert! database :note_list
                {:list_id list-id

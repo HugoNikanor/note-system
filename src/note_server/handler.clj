@@ -36,7 +36,8 @@
                     (POST "/set-checkbox" [list-id id new-value]
                           (db/change-checkbox! list-id id new-value))
                     (POST "/add-item" [list-id text]
-                          (db/insert-list-item! list-id text)))
+                          (println (str list-id ": " text))
+                          (j/write-str (db/insert-list-item! list-id text))))
            (context "/token" []
                     (GET "/raw" [] *anti-forgery-token*)
                     (GET "/html" [] (anti-forgery-field)))
