@@ -43,61 +43,29 @@ var enableCheckboxForms = function() {
 	});
 }
 
-// TODO possibly rewrite this without mutation
 var createHTMLList = function(json) {
 	var bullets = "";
-	var id;
+	var bulletTemplate = Handlebars.compile($("#single-bullet-template").html());
 	json.map(function(item) {
-		// item.done to see check-mark status
-		console.log(item);
-		id = item.list_id;
-		var checked = "";
-		if(item.done) {
-			checked = " checked";
-		}
-		bullets +=
-			"<li class='"+
-			checked+
-			"' "+
-			"data-list-id='"+
-			item.list_id+
-			"' "+
-			"data-id='"+
-			item.id+
-			"'>"+
-			item.text+
-			"</li>";
+		if(item.done)
+			item.checked = "checked";
+		bullets += bulletTemplate(item);
 	});
 	// TODO form action
-	bullets += "<li class='new-item'>";
-	bullets += "<form>";
-	bullets += "<input required name='text' type='text' placeholder='new note' />";
-	bullets += "</form>";
-	bullets += "</li>";
+	bullets += $("#new-bullet-template").html();
 	return "<ul class='checkbox-list'>"+bullets+"</ul>";
 }
 
 var createNote = function(json) {
-	var id = json.id;
-	var header = json.header;
-	var type = json.type;
-	var body = json.body;
-
-	var noteId = "note-" + id;
+	var template = Handlebars.compile($("#note-template").html());
 
 	$("#note-container").prepend(
-	       "<article id='"+noteId+"' class='"+type+"'>"+
-	       "<h1>"+header+"</h1>"+
-	       "<p>"+body+"</p>"+
-	       "<div class='note-footer'>"+
-		   "<span class='id'>id: "+id+"</span>"+
-		   "</div>"+
-	       "</article>"
+		template(json)
 	);
 
-	if(type == "list") {
-		$.getJSON("http://localhost:3000/note/list?id="+id, function(list) {
-			$("#" + noteId).children(".note-footer").before(createHTMLList(list)); 
+	if(json.type == "list") {
+		$.getJSON("http://localhost:3000/note/list?id="+json.id, function(list) {
+			$("#note-" + json.id).children(".note-footer").before(createHTMLList(list));
 		});
 	}
 }

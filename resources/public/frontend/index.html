@@ -4,11 +4,34 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+	<script type="text/javascript" src="handlebars-v4.0.5.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 	<title>Hugo Notes</title>
 </head>
 <body>
+	<span class="hidden templates">
+		<span id="note-template">
+			<article id="note-{{id}}" class="{{type}}">
+				<h1>{{header}}</h1>
+				<p>{{body}}</p>
+				<div class="note-footer">
+					<span class="id">id: {{id}}</span>
+				</div>
+			</article>
+		</span>
+		<span id="single-bullet-template">
+			<li class="{{checked}}" data-list-id="{{list_id}}" data-id="{{id}}">{{text}}</li>
+		</span>
+		<span id="new-bullet-template">
+			<li class="new-item">
+				<form>
+					<input required name="text" type="text" placeholder="new note" />
+				</form>
+			</li>
+		</span>
+	</span>
+
 	<header>Notes:</header>
 
 	<section id="controls">
