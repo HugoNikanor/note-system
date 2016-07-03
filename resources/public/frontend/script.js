@@ -147,8 +147,6 @@ var getNotesById = function(id) {
 /*
  * Handles the post request when creating a new note
  * Adds the newly posted note to the dom
- * TODO the new node appears before the 'new-note' note
- *      The 'new-note' note should always be the first element
  */
 var newNoteForm = function(event) {
 	event.preventDefault();
