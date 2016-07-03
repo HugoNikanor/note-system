@@ -1,16 +1,17 @@
+/* General stuff */
 .hidden {
 	display: none;
 }
+input.seamless, textarea.seamless {
+	border: none;
+	background-color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
 #note-container {
 	width: 100%;
-	/*overflow: wrap;*/
-}
-#node-id-input {
-	width: 3em;
-}
-header {
-	font-size: 3em;
-	border-bottom: 1px solid grey;
 }
 
 /* Note */
@@ -26,6 +27,12 @@ header {
 	font-size: 12px;
 	*/
 }
+
+/*
+ * Note type background
+ * In the future this will probably be replaced
+ * by a note by note color
+ */
 #note-container > article.note {
 	background-color: lightYellow;
 }
@@ -38,18 +45,19 @@ header {
 #note-container > article.new-note {
 	background-color: lightBlue;
 }
-#note-container > article.new-note textarea {
-	/*background-color: red;*/
-	width: 100%;
-	overflow: wrap;
-}
 
-#note-container > article > h1 { }
-#note-container > article > p { }
-#note-container > article > .note-footer > .id {
+/* Note footer */
+#note-container > article > footer > .id {
 	float: right;
 	color: grey;
 	font-size: 10pt;
+}
+
+
+
+/* Note checkbox list */
+.checkbox-list form {
+	display: inline;
 }
 
 .checkbox-list > li {
@@ -60,12 +68,10 @@ header {
 	text-decoration: line-through;
 	color: gray;
 }
-/* TODO actually format this so it matches the other ones */
 .checkbox-list > li.new-item {
 	list-style: none;
 }
 .checkbox-list > li.new-item:before {
-	/*＋*/
 	content: "+";
 	margin-left: -1em;
 	margin-right: 0.5em;
@@ -77,16 +83,8 @@ header {
 .checkbox-list > li.new-item input {
 	margin-left: -3px;
 }
-
-/* possibly limit this to input ([type="text"]?) and textarea */
-.seamless {
-	border: none;
-	background-color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
+#note-container > article.new-note textarea {
+	width: 100%;
+	overflow: wrap;
 }
 
-.checkbox-list form {
-	display: inline;
-}
