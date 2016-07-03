@@ -41,9 +41,9 @@
            (context "/token" []
                     (GET "/raw" [] *anti-forgery-token*)
                     (GET "/html" [] (anti-forgery-field)))
-           (POST "/submit" [header body]
+           (POST "/submit" [header body type]
                  (j/write-str
-                   (db/insert! {:type "note"
+                   (db/insert! {:type type
                                 :header header
                                 :body body})))
            (GET "/:type" [type]

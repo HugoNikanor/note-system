@@ -119,7 +119,7 @@ var newNoteForm = function(event) {
 	{
 		"header": form.find("input[name=header]").val(),
 		"body": form.find("textarea[name=body]").val(),
-		"type": "note"
+		"type": "list"
 	}
 
 	post("/note/submit", json,
