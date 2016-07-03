@@ -67,11 +67,14 @@ header {
 	padding: 0px;
 }
 .checkbox-list > li.new-item input {
+	margin-left: -3px;
+}
+
+input.seamless {
 	border: none;
 	background-color: inherit;
 	font-family: inherit;
 	font-size: inherit;
-	margin-left: -3px;
 }
 
 .checkbox-list form {
