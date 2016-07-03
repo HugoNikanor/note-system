@@ -29,11 +29,6 @@ var enableCheckbox = function(event) {
 			});
 }
 
-var enableCheckboxList = function() {
-	$(".checkbox-list").find("li").click(enableCheckbox);
-
-}
-
 var createHTMLList = function(json) {
 	var bullets = "";
 	var bulletTemplate = Handlebars.compile($("#single-bullet-template").html());
@@ -72,13 +67,13 @@ var newBulletSubmit = function(event) {
 				}
 
 				var template = Handlebars.compile($("#single-bullet-template").html());
+
+				// THIS ELEMENT SOMEHOW HAS THE CLICK LISTENER ALREADY ENABLED‽
 				var element = $(template(json));
 
 				// possibly better parent finding
 				// should be nearest <li> element
 				form.parent().before(element);
-				element.click(enableCheckbox);
-
 				textArea.val("");
 			});
 	event.preventDefault();
@@ -92,9 +87,13 @@ var createNote = function(json) {
 	if(json.type == "list") {
 		$.getJSON("/note/list?id="+json.id, function(list) {
 			var note = $("#note-" + json.id);
-			note.children(".note-footer").before(createHTMLList(list));
+
+			var items = $(createHTMLList(list));
+			// this enables the "clickability" of the list items
+			items.click(enableCheckbox);
+
+			note.children(".note-footer").before(items);
 			var form = note.find("form[name=new-bullet]");
-			console.log(form);
 			form.submit(newBulletSubmit);
 		});
 	}
@@ -113,8 +112,8 @@ var getNotesById = function(id) {
 
 var afterInit = function() {
 	$("#note-container").prepend( Handlebars.compile($("#new-note-template").html())());
-	enableCheckboxList();
 }
+
 
 $(document).ready(function() {
 	// Sets up note request fields
@@ -150,8 +149,7 @@ $(document).ready(function() {
 	// add all notes from the server to start with
 	getNotes("/note/all");
 
-	// TODO this is uggly!
+	// TODO this is ugly!
 	setTimeout(afterInit, 1500);
-
 });
 
