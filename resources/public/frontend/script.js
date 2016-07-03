@@ -6,28 +6,31 @@ var post = function(url, json, callback) {
 		$.post(url, json, callback);
 	});
 }
+
+var enableCheckbox = function(event) {
+	var el = $(event.toElement);
+
+	var newValue;
+	if(el.hasClass("checked")) {
+		newValue = 0;
+		el.removeClass("checked");
+	} else {
+		newValue = 1;
+		el.addClass("checked");
+	}
+
+	// this is also called when pressing the new-item 'item'
+	// it probably shouldn't
+	post("/note/list/set-checkbox",
+			{
+				"list-id": el.data("listId"),
+				"id": el.data("id"),
+				"new-value": newValue,
+			});
+}
+
 var enableCheckboxList = function() {
-	$(".checkbox-list").find("li").click(function(event) {
-		var el = $(event.toElement);
-
-		var newValue;
-		if(el.hasClass("checked")) {
-			newValue = 0;
-			el.removeClass("checked");
-		} else {
-			newValue = 1;
-			el.addClass("checked");
-		}
-
-		// this is also called when pressing the new-item 'item'
-		// it probably shouldn't
-		post("/note/list/set-checkbox",
-				{
-					"list-id": el.data("listId"),
-					"id": el.data("id"),
-					"new-value": newValue,
-				});
-	});
+	$(".checkbox-list").find("li").click(enableCheckbox);
 
 }
 
@@ -69,11 +72,12 @@ var newBulletSubmit = function(event) {
 				}
 
 				var template = Handlebars.compile($("#single-bullet-template").html());
+				var element = $(template(json));
 
 				// possibly better parent finding
 				// should be nearest <li> element
-				// TODO this is sometimes called twice
-				form.parent().before(template(json));
+				form.parent().before(element);
+				element.click(enableCheckbox);
 
 				textArea.val("");
 			});
@@ -87,9 +91,11 @@ var createNote = function(json) {
 
 	if(json.type == "list") {
 		$.getJSON("/note/list?id="+json.id, function(list) {
-			$("#note-" + json.id).children(".note-footer").before(createHTMLList(list));
-			// TODO possibly check this so it doesn't reaply the function to all forms
-			$("form[name=new-bullet]").submit(newBulletSubmit);
+			var note = $("#note-" + json.id);
+			note.children(".note-footer").before(createHTMLList(list));
+			var form = note.find("form[name=new-bullet]");
+			console.log(form);
+			form.submit(newBulletSubmit);
 		});
 	}
 }
