@@ -27,8 +27,14 @@
                       (json/format-notes entries)))
                   (json/error-note)))
            ; TODO filter?
-           (GET "/all" []
-                (json/format-notes (db/query-all)))
+           (GET "/all" [type]
+                (case type
+                  "json" (json/format-notes (db/query-all))
+                  "html" (html/format-notes (db/query-all))
+                  (html [:center
+                         [:h1 "Unknown Type"]
+                         [:p "This should possibly be set to json, to match the older code..."]])))
+
            ;(GET "/list" [id]
            (context "/list" []
                     (GET "/" [id]
