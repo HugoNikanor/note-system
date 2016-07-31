@@ -1,13 +1,13 @@
-(ns note-server.handler
+(ns noteServer.handler
   (:use ring.middleware.anti-forgery
         ring.util.anti-forgery)
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [note-server.database :as db]
-            [note-server.security :as security]
-            [note-server.html :as html]
-            [note-server.json :as json]
+            [noteServer.database :as db]
+            [noteServer.security :as security]
+            [noteServer.html :as html]
+            [noteServer.json :as json]
             [clojure.data.json :as j] ; TODO proper import names
             [hiccup.core :refer :all]
             [hiccup.page :refer :all]
@@ -21,7 +21,7 @@
            (GET "/" [id]
                 ; since id can be nil
                 (if id
-                  (let [entries (db/query (str/split id #","))]
+                  (let [entries (db/query-notes (str/split id #","))]
                     (if (zero? (count entries))
                       (json/error-note)
                       (json/format-notes entries)))
@@ -29,8 +29,10 @@
            ; TODO filter?
            (GET "/all" [type]
                 (case type
-                  "json" (json/format-notes (db/query-all))
-                  "html" (html/format-notes (db/query-all))
+                  ;"json" (json/format-notes (db/query-all))
+                  "json" (json/format-notes (db/query-notes))
+                  ;"html" (html/format-notes (db/query-all))
+                  ;"xml" (xml/format-notes (db/query-all))
                   (html [:center
                          [:h1 "Unknown Type"]
                          [:p "This should possibly be set to json, to match the older code..."]])))

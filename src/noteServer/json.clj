@@ -1,7 +1,7 @@
-(ns note-server.json
+(ns noteServer.json
   (:require [clojure.data.json :as json]
-            ;[note-server.security :as security])
-            [note-server.database :as db]
+            ;[noteServer.security :as security])
+            [noteServer.database :as db]
             )
   )
 

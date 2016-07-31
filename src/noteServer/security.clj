@@ -1,4 +1,4 @@
-(ns note-server.security
+(ns noteServer.security
   (:require [org.clojars.tnoda.simple-crypto :as crypt])
   )
 

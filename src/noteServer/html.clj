@@ -1,8 +1,8 @@
-(ns note-server.html
+(ns noteServer.html
   (:require [hiccup.core :refer :all]
             [hiccup.page :refer :all]
             [hiccup.def :refer [defhtml]]
-            [note-server.security :as security])
+            [noteServer.security :as security])
   )
 
 (defhtml format-notes [entries]
