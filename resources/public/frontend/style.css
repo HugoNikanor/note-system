@@ -28,7 +28,14 @@ input.seamless, textarea.seamless {
 	*/
 }
 
-#note-container > article > p > textarea {
+#note-container > article > .module > img {
+	display: block;
+	margin: auto;
+}
+
+#note-container > article > .module { }
+
+#note-container > article > .module > p > textarea {
 	width: 100%;
 }
 
@@ -48,6 +55,11 @@ input.seamless, textarea.seamless {
 }
 #note-container > article.new-note {
 	background-color: lightBlue;
+}
+
+#note-container > article > footer {
+	border-top: 1px solid grey;
+	margin-top: 1ex;
 }
 
 /* Note footer */
