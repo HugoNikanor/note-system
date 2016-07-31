@@ -32,7 +32,8 @@
                 (html5
                   {:lang "en"}
                   [:head
-                   (include-js "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+                   (include-js "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+                               "frontend/script.js")
                    (include-css "frontend/style.css"
                                 "frontend/svg-style.css")]
                   [:body [:section#note-container (html/format-notes (db/query-notes))]]))

@@ -39,7 +39,7 @@
                          "text"
                          [:p (:text data)])]))
               modules)
-         [:div.module.module-adder [:a {:href "#"} [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]]
+         [:div.module.module-adder [:button [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]]
          [:footer
           [:span.id "Id: " id]]]))
     entries))

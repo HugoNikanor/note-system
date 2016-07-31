@@ -39,8 +39,24 @@ input.seamless, textarea.seamless {
 	width: 100%;
 }
 
-a > * {
-	max-height: 30px;
+.module-adder {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.module-adder > button {
+	/* max-width: 100%; */
+	margin: auto;
+	padding: 5px;
+	width: 44px;
+	height: 44px;
+}
+
+.module-adder > button > object {
+	/*
+	width: 30px;
+	height: 30px;
+	*/
 }
 
 /*

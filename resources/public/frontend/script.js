@@ -30,12 +30,14 @@ var enableCheckbox = function(event) {
 
 	// this is also called when pressing the new-item 'item'
 	// it probably shouldn't
+	/*
 	post("/note/list/set-checkbox",
 			{
 				"list-id": el.data("listId"),
 				"id": el.data("id"),
 				"new-value": newValue,
 			});
+			*/
 	event.stopPropagation();
 }
 
@@ -236,9 +238,14 @@ var makeNoteEditable = function(inObject) {
 
 $(document).ready(function() {
 	// add the submit handler to the new note submit form
-	$(".new-note").submit(newNoteForm);
+	//$(".new-note").submit(newNoteForm);
 
 	// add all notes from the server to start with
-	getNotes("/note/all");
+	//getNotes("/note/all");
+	
+	$(".checkbox-list > li").click(enableCheckbox);
+	$(".module-adder button").click(function (event) {
+		console.log(event);
+	});
 });
 
