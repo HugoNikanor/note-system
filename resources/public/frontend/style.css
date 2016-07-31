@@ -39,6 +39,10 @@ input.seamless, textarea.seamless {
 	width: 100%;
 }
 
+a > * {
+	max-height: 30px;
+}
+
 /*
  * Note type background
  * In the future this will probably be replaced

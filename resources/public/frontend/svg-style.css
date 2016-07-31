@@ -1,0 +1,6 @@
+.circle-plus > path {
+    fill: gold;
+    stroke: gold;
+    stroke-width: 0.1;
+    stroke-linejoin: round;
+}

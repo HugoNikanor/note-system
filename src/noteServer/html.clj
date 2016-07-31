@@ -5,6 +5,7 @@
             [noteServer.security :as security])
   )
 
+;; TODO split this into multiple functions, so it gets readable
 (defhtml format-notes [entries]
   (println entries)
   (map 
@@ -38,17 +39,7 @@
                          "text"
                          [:p (:text data)])]))
               modules)
+         [:div.module.module-adder [:a {:href "#"} [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]]
          [:footer
           [:span.id "Id: " id]]]))
     entries))
-
-
-
-
-  
-
-(defn get-formated-note [note]
-  (html
-    [:article {:id (:id note)}
-     [:h1 (:header note)]
-     [:p (:body note)]]))
