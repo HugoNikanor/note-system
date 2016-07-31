@@ -26,13 +26,22 @@
                       (json/error-note)
                       (json/format-notes entries)))
                   (json/error-note)))
+
+           ;; This is for debugging, at least for now
+           (GET "/page" []
+                (html5
+                  {:lang "en"}
+                  [:head (include-css "frontend/style.css")]
+                  [:body [:section#note-container (html/format-notes (db/query-notes))]]))
+
            ; TODO filter?
            (GET "/all" [type]
                 (case type
                   ;"json" (json/format-notes (db/query-all))
                   "json" (json/format-notes (db/query-notes))
-                  ;"html" (html/format-notes (db/query-all))
+                  "html" (html/format-notes (db/query-notes))
                   ;"xml" (xml/format-notes (db/query-all))
+                  "raw" (db/query-notes)
                   (html [:center
                          [:h1 "Unknown Type"]
                          [:p "This should possibly be set to json, to match the older code..."]])))
