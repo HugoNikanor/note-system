@@ -1,0 +1,19 @@
+<svg
+	class="circle-plus"
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 5 5">
+	<g transform="translate(0,5) scale(1,-1)">
+		<g
+				stroke="black"
+				stroke-width="0.1"
+				fill-opacity="0.0">
+			<!-- Outline -->
+			<path d="M 0 1 m 3 3 l -3 -3 l 0 -1 l 1 0 l 3 3 Z" />
+			<!-- Tip edge -->
+			<path d="M 0 1 Q 1 1 1 0" />
+			<!-- "Middle lines -->
+			<path d="M 1 1 m 0.2 -0.2 l 2.25 2.25" />
+			<path d="M 1 1 m -0.2 0.2 l 2.25 2.25" />
+		</g>
+	</g>
+</svg>
