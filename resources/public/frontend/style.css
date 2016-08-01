@@ -43,7 +43,9 @@ div[role="module"] {
 	margin-top: 1ex;
 	margin-bottom: 1ex;
 	/* TODO side margin size */
+	/*
 	margin-left: 1em;
+	*/
 }
 
 /* Module spacing should be set for module class */
@@ -74,8 +76,17 @@ div[role="module"] > * {
 /*** META CONTROL MODULE ***/
 
 .module-adder-module,
-.meta-control-module {
+.meta-control-module,
+.remove-confirm-module {
+	/*
 	text-align: center;
+	*/
+	display: flex;
+	justify-content: space-between;
+
+	/*
+	display: none;
+	*/
 }
 
 /* TODO center all the icons properly */
@@ -85,6 +96,17 @@ div[role="module"] > * {
 	margin: auto;
 	width: 44px;
 	height: 44px;
+}
+
+.remove-confirm-module > button {
+	height: 44px;
+	width: 50%;
+}
+.remove-confirm-btn {
+	background-color: red;
+}
+.remove-cancel-btn {
+	background-color: lightBlue;
 }
 
 .meta-control-module > button {
@@ -111,7 +133,7 @@ button.list-module-btn {
 	background-color: green;
 }
 
-button.img-module-btn {
+button.image-module-btn {
 	background-color: red;
 }
 
