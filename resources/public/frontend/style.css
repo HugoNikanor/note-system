@@ -1,4 +1,5 @@
-/* General stuff */
+/*** General stuff ***/
+
 .hidden {
 	display: none;
 }
@@ -12,6 +13,9 @@ input.seamless, textarea.seamless {
 
 #note-container {
 	width: 100%;
+}
+button > object {
+	pointer-events: none;
 }
 
 /* Note */
@@ -28,36 +32,79 @@ input.seamless, textarea.seamless {
 	*/
 }
 
+/*** MODULE BASE ***/
+
+/* Module spacing */
+.module {
+	margin-top: 1ex;
+	margin-bottom: 1ex;
+	/* TODO side margin size */
+	margin-left: 1em;
+}
+
+/* Module spacing should be set for module class */
+.module > * {
+	margin: 0;
+}
+
+/*** SPECIFIC MODULES ***/
+
+/* Center image module image */
 #note-container > article > .module > img {
 	display: block;
 	margin: auto;
 }
 
-#note-container > article > .module { }
-
 #note-container > article > .module > p > textarea {
 	width: 100%;
 }
 
-.module-adder {
-	margin-top: 1em;
+/*** META CONTROL MODULE ***/
+
+.module-adder,
+.meta-control {
 	text-align: center;
 }
 
+/* TODO center all the icons properly */
+.meta-control > button,
 .module-adder > button {
-	/* max-width: 100%; */
-	margin: auto;
 	padding: 5px;
+	margin: auto;
 	width: 44px;
 	height: 44px;
 }
 
-.module-adder > button > object {
-	/*
-	width: 30px;
-	height: 30px;
-	*/
+.meta-control > button {
+	background-color: inherit;
+	border: none;
 }
+
+/*** MODULE ADDER ***/
+
+.module-adder > button {
+	font-size: 2em;
+	font-family: monospace;
+}
+
+button.header-module-btn {
+	background-color: blue;
+}
+
+button.text-module-btn {
+	background-color: yellow;
+}
+
+button.list-module-btn {
+	background-color: green;
+}
+
+button.img-module-btn {
+	background-color: red;
+}
+
+
+/*** OTHER ***/
 
 /*
  * Note type background
