@@ -39,7 +39,11 @@
                          "text"
                          [:p (:text data)])]))
               modules)
-         [:div.module.module-adder [:button [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]]
+         [:div.module.module-adder
+          [:button.edit-module-btn [:object {:type "image/svg+xml" :data "img/pencil.svg"}]]
+          [:button.pre-module-btn [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]
+          ;; TODO There should be a delete button here!
+          ]
          [:footer
           [:span.id "Id: " id]]]))
     entries))
