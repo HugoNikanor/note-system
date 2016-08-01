@@ -243,9 +243,84 @@ $(document).ready(function() {
 	// add all notes from the server to start with
 	//getNotes("/note/all");
 	
-	$(".checkbox-list > li").click(enableCheckbox);
-	$(".module-adder button").click(function (event) {
-		console.log(event);
+	$(document).on("click", ".checkbox-list > li", enableCheckbox);
+
+	// TODO decide if vanilla or jQuery should be used
+
+	var addCompBtns =
+		"<div class='module module-adder'> \
+			 <button data-type='header' class='module-btn header-module-btn'>H</button> \
+			 <button data-type='text'   class='module-btn text-module-btn'  >P</button> \
+			 <button data-type='list'   class='module-btn list-module-btn'  >L</button> \
+			 <button data-type='image'  class='module-btn img-module-btn'   >I</button> \
+		 </div>"
+
+	//var plusBtn = document.querySelector(".module-adder button.pre-module-btn").parentNode.cloneNode(true);
+	$(document).on("click", "button.edit-module-btn", function(event) {
+		console.log("Editing note:");
+		console.log(this.parentNode.parentNode);
+		event.stopPropagation();
+	});
+
+	$("button.pre-module-btn").on("click", function(event) {
+		console.log(this);
+		// TODO fancy animations
+		//$(this).replaceWith(addCompBtns);
+		this.parentNode.insertAdjacentHTML("beforebegin", addCompBtns);
+		this.parentNode.style.display = "none";
+		event.stopPropagation();
+	});
+
+	$(document).on("click", "button.module-btn", function(event) {
+
+		var newModule = document.createElement("div");
+		newModule.className = "module";
+
+		var type = this.dataset.type;
+		newModule.dataset.type = type;
+
+		switch(this.dataset.type) {
+			case "header":
+				newModule.innerHTML = "<h1>New Header!</h1>";
+				break;
+			case "text":
+				newModule.innerHTML = "<p>New text module created!</p>";
+				break;
+			case "image":
+				newModule.innerHTML = "<img src='http://imgs.xkcd.com/comics/red_car.png' />";
+				break;
+			case "list":
+				newModule.innerHTML = "<ul class='checkbox-list'><li>sample</li></ul>";
+				break;
+		}
+		// TODO which one of these are best
+		//this.parentNode.parentNode.insertBefore(newModule, this.parentNode);
+		//this.parentNode.insertAdjacentHTML("beforebegin", newModule.outerHTML);
+
+		//this.parentNode.insertAdjacentHTML("afterend", plusBtn.outerHTML);
+		/*
+		this.parentNode.insertAdjacentHTML("afterend", newModule.outerHTML);
+		this.parentNode.remove();
+		*/
+		this.parentNode.parentNode.replaceChild(newModule, this.parentNode);
+		//this.parentNode.style.display = "block";
+
+		// TODO remove this, add propper iteration
+		// This should just make the meta control vissible again
+		NodeList.prototype.forEach = Array.prototype.forEach;
+		document.querySelectorAll(".meta-control button.pre-module-btn").forEach(function (i) {
+			i.parentNode.style.display = "block";
+		});
+
+		// TODO
+		var listId = 0;
+		var moduleJson = {
+			"type": type,
+			"list-id": listId
+		}
+		//post("/note/add-module", moduleJson, function() { });
+
+		event.stopPropagation();
 	});
 });
 
