@@ -1,3 +1,11 @@
+/*
+ * TODO
+ * This currently isn't applied, I believe that it has something
+ * to do with the svg being in an inner document.
+ * This should be looked into
+ */
+
+
 .circle-plus > path {
     fill: gold;
     stroke: gold;
