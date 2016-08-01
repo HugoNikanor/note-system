@@ -35,7 +35,7 @@ button > object {
 /*** MODULE BASE ***/
 
 /* Module spacing */
-.module {
+*[role="module"] {
 	margin-top: 1ex;
 	margin-bottom: 1ex;
 	/* TODO side margin size */
@@ -43,46 +43,46 @@ button > object {
 }
 
 /* Module spacing should be set for module class */
-.module > * {
+*[role="module"] > * {
 	margin: 0;
 }
 
 /*** SPECIFIC MODULES ***/
 
 /* Center image module image */
-#note-container > article > .module > img {
+#note-container > article > *[role="module"] > img {
 	display: block;
 	margin: auto;
 }
 
-#note-container > article > .module > p > textarea {
+#note-container > article > *[role="module"] > p > textarea {
 	width: 100%;
 }
 
 /*** META CONTROL MODULE ***/
 
-.module-adder,
-.meta-control {
+.module-adder-module,
+.meta-control-module {
 	text-align: center;
 }
 
 /* TODO center all the icons properly */
-.meta-control > button,
-.module-adder > button {
+.meta-control-module > button,
+.module-adder-module > button {
 	padding: 5px;
 	margin: auto;
 	width: 44px;
 	height: 44px;
 }
 
-.meta-control > button {
+.meta-control-module > button {
 	background-color: inherit;
 	border: none;
 }
 
 /*** MODULE ADDER ***/
 
-.module-adder > button {
+.module-adder-module > button {
 	font-size: 2em;
 	font-family: monospace;
 }
@@ -124,13 +124,13 @@ button.img-module-btn {
 	background-color: lightBlue;
 }
 
-#note-container > article > footer {
+#note-container > article > .footer-module {
 	border-top: 1px solid grey;
 	margin-top: 1ex;
 }
 
 /* Note footer */
-#note-container > article > footer > .id {
+#note-container > article > .footer-module > .id {
 	float: right;
 	color: grey;
 	font-size: 10pt;

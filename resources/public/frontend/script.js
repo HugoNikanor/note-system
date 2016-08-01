@@ -248,21 +248,21 @@ $(document).ready(function() {
 	// TODO decide if vanilla or jQuery should be used
 
 	var addCompBtns =
-		"<div class='module module-adder'> \
+		"<div class='module-adder-module' role='module'> \
 			 <button data-type='header' class='module-btn header-module-btn'>H</button> \
 			 <button data-type='text'   class='module-btn text-module-btn'  >P</button> \
 			 <button data-type='list'   class='module-btn list-module-btn'  >L</button> \
 			 <button data-type='image'  class='module-btn img-module-btn'   >I</button> \
 		 </div>"
 
-	//var plusBtn = document.querySelector(".module-adder button.pre-module-btn").parentNode.cloneNode(true);
+	//var plusBtn = document.querySelector(".module-adder button.new-module-btn").parentNode.cloneNode(true);
 	$(document).on("click", "button.edit-module-btn", function(event) {
 		console.log("Editing note:");
 		console.log(this.parentNode.parentNode);
 		event.stopPropagation();
 	});
 
-	$("button.pre-module-btn").on("click", function(event) {
+	$("button.new-module-btn").on("click", function(event) {
 		console.log(this);
 		// TODO fancy animations
 		//$(this).replaceWith(addCompBtns);
@@ -308,7 +308,7 @@ $(document).ready(function() {
 		// TODO remove this, add propper iteration
 		// This should just make the meta control vissible again
 		NodeList.prototype.forEach = Array.prototype.forEach;
-		document.querySelectorAll(".meta-control button.pre-module-btn").forEach(function (i) {
+		document.querySelectorAll(".meta-control-module button.new-module-btn").forEach(function (i) {
 			i.parentNode.style.display = "block";
 		});
 

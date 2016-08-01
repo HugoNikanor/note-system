@@ -11,25 +11,25 @@
   (map 
     (fn [note]
       (println note)
-      (let [id (:id note)
+      (let [note-id (:id note)
             modules (:modules note)]
-        [:article.note {:id (str "note-" id) :data-id id}
+        [:article.note {:id (str "note-" note-id) :data-id note-id}
          (map (fn [module]
                 (println module)
                 (let [type (:type module)
-                      id (:id module)
+                      module-id (:id module)
                       data (:data module)]
-                  [:div.module {:data-id id :data-type type}
+                  [:div {:class (str type "-module") :data-id module-id :data-type type :role "module"}
                    (println type)
                    (case type
                          "list"
-                         [:ul.checkbox-list ;TODO class-name?
+                         [:ul.checkbox-list {:data-note-id note-id :module-id module-id}
                           (map (fn [li]
                                  (let [d (:done li)
-                                       id (:id li)
+                                       item-id (:id li)
                                        text (:text li)]
                                    [:li {:class (if d "checked" "")
-                                         :data-id id}
+                                         :data-id item-id}
                                     text]))
                                data)]
                          "image"
@@ -39,12 +39,12 @@
                          "text"
                          [:p (:text data)])]))
               modules)
-         [:div.module.meta-control
+         [:div.meta-control-module {:role "module"}
           [:button.edit-module-btn [:object {:type "image/svg+xml" :data "icons/edit.svg"}]]
           ;; TODO rename pre module button class
-          [:button.pre-module-btn [:object {:type "image/svg+xml" :data "icons/new.svg"}]]
+          [:button.new-module-btn [:object {:type "image/svg+xml" :data "icons/new.svg"}]]
           [:button.delete-module-btn [:object {:type "image/svg+xml" :data "icons/delete.svg"}]]
           ]
-         [:footer
-          [:span.id "Id: " id]]]))
+         [:div.footer-module {:role "module"}
+          [:span.id "Id: " note-id]]]))
     entries))
