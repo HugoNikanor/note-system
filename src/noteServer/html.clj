@@ -39,12 +39,7 @@
                          "text"
                          [:p (:text data)])]))
               modules)
-         [:div.meta-control-module {:role "module"}
-          [:button.edit-module-btn [:object {:type "image/svg+xml" :data "icons/edit.svg"}]]
-          ;; TODO rename pre module button class
-          [:button.new-module-btn [:object {:type "image/svg+xml" :data "icons/new.svg"}]]
-          [:button.delete-module-btn [:object {:type "image/svg+xml" :data "icons/delete.svg"}]]
-          ]
+
          [:div.footer-module {:role "module"}
           [:span.id "Id: " note-id]]]))
     entries))
