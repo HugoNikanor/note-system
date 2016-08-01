@@ -3,7 +3,8 @@
 .hidden {
 	display: none;
 }
-input.seamless, textarea.seamless {
+input.seamless,
+textarea.seamless {
 	border: none;
 	background-color: inherit;
 	font-family: inherit;
@@ -18,8 +19,10 @@ button > object {
 	pointer-events: none;
 }
 
+/*** NOTE ***/
+
 /* Note */
-#note-container > article {
+article.note {
 	border: 1px solid black;
 	width: 300px;
 	float: left;
@@ -30,12 +33,13 @@ button > object {
 	font-family: sans;
 	font-size: 12px;
 	*/
+	background-color: lightYellow;
 }
 
 /*** MODULE BASE ***/
 
 /* Module spacing */
-*[role="module"] {
+div[role="module"] {
 	margin-top: 1ex;
 	margin-bottom: 1ex;
 	/* TODO side margin size */
@@ -43,21 +47,29 @@ button > object {
 }
 
 /* Module spacing should be set for module class */
-*[role="module"] > * {
+div[role="module"] > * {
 	margin: 0;
 }
 
 /*** SPECIFIC MODULES ***/
 
 /* Center image module image */
-#note-container > article > *[role="module"] > img {
+.image-module > img {
 	display: block;
 	margin: auto;
 }
 
-#note-container > article > *[role="module"] > p > textarea {
+/*
+#note-container > article > div[role="module"] > p > textarea {
 	width: 100%;
 }
+
+#note-container > article.new-note textarea {
+	width: 100%;
+	overflow: wrap;
+}
+
+*/
 
 /*** META CONTROL MODULE ***/
 
@@ -111,6 +123,7 @@ button.img-module-btn {
  * In the future this will probably be replaced
  * by a note by note color
  */
+/*
 #note-container > article.note {
 	background-color: lightYellow;
 }
@@ -128,15 +141,17 @@ button.img-module-btn {
 	border-top: 1px solid grey;
 	margin-top: 1ex;
 }
+*/
 
 /* Note footer */
-#note-container > article > .footer-module > .id {
+.footer-module > .id {
 	float: right;
 	color: grey;
 	font-size: 10pt;
 }
 
 
+/*** CHECKBOX LIST ***/
 
 /* Note checkbox list */
 .checkbox-list form {
@@ -166,8 +181,3 @@ button.img-module-btn {
 .checkbox-list > li.new-item input {
 	margin-left: -3px;
 }
-#note-container > article.new-note textarea {
-	width: 100%;
-	overflow: wrap;
-}
-
