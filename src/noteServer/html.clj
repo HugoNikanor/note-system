@@ -41,8 +41,9 @@
               modules)
          [:div.module.meta-control
           [:button.edit-module-btn [:object {:type "image/svg+xml" :data "img/pencil.svg"}]]
+          ;; TODO rename pre module button class
           [:button.pre-module-btn [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]
-          ;; TODO There should be a delete button here!
+          [:button.delete-module-btn [:object {:type "image/svg+xml" :data "img/large-x.svg"}]]
           ]
          [:footer
           [:span.id "Id: " id]]]))

@@ -1,0 +1,11 @@
+<svg
+		class="circle-plus"
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 5 5">
+
+	<g transform="rotate(45, 2.5, 2.5)">
+		<g stroke="black" stroke-width="0.2" fill-opacity="0.0">
+			<path d="M2 0 h1 v2 h2 v1 h-2 v2 h-1 v-2 h-2 v-1 h2 z" />
+		</g>
+	</g>
+</svg>
