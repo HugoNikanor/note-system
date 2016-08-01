@@ -40,10 +40,10 @@
                          [:p (:text data)])]))
               modules)
          [:div.module.meta-control
-          [:button.edit-module-btn [:object {:type "image/svg+xml" :data "img/pencil.svg"}]]
+          [:button.edit-module-btn [:object {:type "image/svg+xml" :data "icons/edit.svg"}]]
           ;; TODO rename pre module button class
-          [:button.pre-module-btn [:object {:type "image/svg+xml" :data "img/circle-plus.svg"}]]
-          [:button.delete-module-btn [:object {:type "image/svg+xml" :data "img/large-x.svg"}]]
+          [:button.pre-module-btn [:object {:type "image/svg+xml" :data "icons/new.svg"}]]
+          [:button.delete-module-btn [:object {:type "image/svg+xml" :data "icons/delete.svg"}]]
           ]
          [:footer
           [:span.id "Id: " id]]]))
