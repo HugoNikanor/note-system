@@ -39,19 +39,20 @@
                   [:body
                    [:template#meta-control-template
                    ;[:template#module-adder-template
-                    [:div.module-adder-module {:role "module"}
+                    [:div.meta-module.module-adder-module {:role "module"}
                      [:div.button-spacer
                       [:button.module-btn.header-module-btn {:data-type "header"} "H"]
                       [:button.module-btn.text-module-btn   {:data-type "text"  } "T"]
                       [:button.module-btn.list-module-btn   {:data-type "list"  } "L"]
                       [:button.module-btn.image-module-btn  {:data-type "image" } "I"]]]
                    ;[:template#remove-confirm-template
-                    [:div.remove-confirm-module {:role "module"}
+                    [:div.meta-module.remove-confirm-module {:role "module"}
                      [:div.button-spacer
                      [:button.remove-confirm-btn {:name "confirm"} "Really Delete"]
                      [:button.remove-cancel-btn {:name "cancel"} "Cancel"]]]
                    ;[:template#meta-control-template
-                    [:div.meta-control-module {:role "module"}
+                    ;; TODO call this module something better
+                    [:div.meta-module.meta-control-module {:role "module"}
                      [:div.button-spacer
                       [:button.edit-module-btn   [:object { :type "image/svg+xml" :data "icons/edit.svg"}]]
                       [:button.new-module-btn    [:object { :type "image/svg+xml" :data "icons/new.svg"}]]

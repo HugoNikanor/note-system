@@ -50,6 +50,6 @@
 
          [:span.module-divide]
 
-         [:div.footer-module {:role "module"}
+         [:div.meta-module.footer-module {:role "module"}
           [:span.id "Id: " note-id]]]))
     entries))
