@@ -19,7 +19,7 @@ var post = function(url, json, callback) {
  * TODO reenable post
  */
 var enableCheckbox = function(event) {
-	var el = $(event.toElement);
+	var el = $(this);
 
 	var newValue;
 	if(el.hasClass("checked")) {
