@@ -174,30 +174,35 @@ button.image-module-btn {
 /*** CHECKBOX LIST ***/
 
 /* Note checkbox list */
+.checkbox-list {
+	padding-left: 20px;
+}
 .checkbox-list form {
 	display: inline;
 }
 
 .checkbox-list > li {
 	cursor: pointer;
-	list-style-position: outside;
+	list-style-position: inside;
 }
 .checkbox-list > li.checked {
 	text-decoration: line-through;
 	color: gray;
 }
+
 .checkbox-list > li.new-item {
 	list-style: none;
 }
 .checkbox-list > li.new-item:before {
 	content: "+";
-	margin-left: -1em;
-	margin-right: 0.5em;
 }
+
 .checkbox-list > li.new-item > form {
 	margin: 0px;
 	padding: 0px;
+	margin-left: 0.4em;
 }
+/*
 .checkbox-list > li.new-item input {
-	margin-left: -3px;
 }
+*/
