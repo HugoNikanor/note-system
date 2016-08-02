@@ -18,7 +18,7 @@ var post = function(url, json, callback) {
  *
  * TODO reenable post
  */
-var enableCheckbox = function(event) {
+var checkboxHandler = function(event) {
 	var el = $(this);
 
 	var newValue;
@@ -139,7 +139,7 @@ var createNote = function(json) {
 
 			var items = $(createHTMLList(list));
 			// this enables the "clickability" of the list items
-			items.click(enableCheckbox);
+			items.click(checkboxHandler);
 
 			note.children("footer").before(items);
 
@@ -299,7 +299,7 @@ $(document).ready(function() {
 	//getNotes("/note/all");
 
 	// enable checkbox lists
-	$(document).on("click", ".checkbox-list > li", enableCheckbox);
+	$(document).on("click", ".checkbox-list > li", checkboxHandler);
 
 	// add meta buttons
 	$(".module-divide").after($("#meta-control-template").html());
