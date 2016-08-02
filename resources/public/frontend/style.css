@@ -80,26 +80,38 @@ div[role="module"] > * {
 
 */
 
+/*** EDIT MODE ***/
+
+/* TODO possibly prettier way to indicate editable */
+.header-module *[contenteditable='true'],
+.text-module   *[contenteditable='true'] {
+	color: blue;
+}
+
 /*** META CONTROL MODULE ***/
 
+/* These are hidden by default so they can be show from js when needed */
 .module-adder-module,
-.remove-confirm-module {
+.remove-confirm-module,
+.edit-control-module {
 	display: none;
 }
 
-/* TODO center all the icons properly */
-.meta-control-module button,
-.module-adder-module button {
-	padding: 5px;
-	margin: auto;
-	width: 44px;
-	height: 44px;
+/* Grow all elements to equal size, space them evenly, fill the area */
+.button-spacer button {
+	min-height: 50px;
+	flex-grow: 0;
+	justify-content: space-around;
+	flex-basis: 100%;
+	font-size: 1em;
 }
 
-.remove-confirm-module button {
-	height: 44px;
-	width: 50%;
+/* This is so that the fancy edit buttons don't grow to large,
+ * it should maybe be removed and replaced with size restrictions on the objects. */
+.meta-control-module button {
+	flex-basis: 50px;
 }
+
 .remove-confirm-btn {
 	background-color: red;
 }
