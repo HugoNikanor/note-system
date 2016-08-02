@@ -15,6 +15,8 @@ var post = function(url, json, callback) {
 /*
  * This enables the functionalty of selecting and deselecting
  * the list bullet points.
+ *
+ * TODO reenable post
  */
 var enableCheckbox = function(event) {
 	var el = $(event.toElement);
@@ -57,7 +59,7 @@ var createHTMLList = function(json) {
 }
 
 /*
- * This handles the post request when adding a new bullet to a list 
+ * This handles the post request when adding a new bullet to a list
  */
 var newBulletSubmit = function(event) {
 	var form = $(event.target);
@@ -65,7 +67,7 @@ var newBulletSubmit = function(event) {
 	var textArea = form.find("input[name=text]");
 	var text = textArea.val();
 	var listId = form.data("listId");
-	
+
 	post("/note/list/add-item",
 			{
 				"list-id": listId,
