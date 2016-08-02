@@ -3,6 +3,7 @@
 .hidden {
 	display: none;
 }
+
 input.seamless,
 textarea.seamless {
 	border: none;
@@ -15,8 +16,14 @@ textarea.seamless {
 #note-container {
 	width: 100%;
 }
+
 button > object {
 	pointer-events: none;
+}
+
+.button-spacer {
+	display: flex;
+	justify-content: space-between;
 }
 
 /*** NOTE ***/
@@ -76,29 +83,20 @@ div[role="module"] > * {
 /*** META CONTROL MODULE ***/
 
 .module-adder-module,
-.meta-control-module,
 .remove-confirm-module {
-	/*
-	text-align: center;
-	*/
-	display: flex;
-	justify-content: space-between;
-
-	/*
 	display: none;
-	*/
 }
 
 /* TODO center all the icons properly */
-.meta-control-module > button,
-.module-adder-module > button {
+.meta-control-module button,
+.module-adder-module button {
 	padding: 5px;
 	margin: auto;
 	width: 44px;
 	height: 44px;
 }
 
-.remove-confirm-module > button {
+.remove-confirm-module button {
 	height: 44px;
 	width: 50%;
 }
@@ -109,14 +107,14 @@ div[role="module"] > * {
 	background-color: lightBlue;
 }
 
-.meta-control-module > button {
+.meta-control-module button {
 	background-color: inherit;
 	border: none;
 }
 
 /*** MODULE ADDER ***/
 
-.module-adder-module > button {
+.module-adder-module button {
 	font-size: 2em;
 	font-family: monospace;
 }
