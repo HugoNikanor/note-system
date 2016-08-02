@@ -41,6 +41,9 @@ article.note {
 	font-size: 12px;
 	*/
 	background-color: lightYellow;
+
+	box-shadow: 5px 5px 2px #888888;
+
 }
 
 /*** MODULE BASE ***/
