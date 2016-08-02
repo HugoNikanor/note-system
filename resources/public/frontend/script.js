@@ -325,6 +325,8 @@ $(document).ready(function() {
 							moduleBody = "<img src='http://imgs.xkcd.com/comics/red_car.png' />";
 							break;
 						case "list":
+							// TODO this should also add in the item for adding more bullets,
+							// ...yet another reason for it to be in a template
 							moduleBody = "<ul class='checkbox-list'><li>sample</li></ul>";
 							break;
 					}
