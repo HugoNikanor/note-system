@@ -33,6 +33,8 @@
                                      :data-id item-id}
                                 text]))
                            data)
+                      ;; Possibly move the form to a template, both to save
+                      ;; bytes, and to only show it when js is active
                       [:li.new-item
                        [:form {:name "new-bullet"}
                         (text-field {:class "seamless" :placeholder "New bullet"} "text")
