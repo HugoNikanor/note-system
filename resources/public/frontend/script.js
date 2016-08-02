@@ -357,7 +357,19 @@ $(document).ready(function() {
 	// add meta buttons
 	$(".module-divide").after($("#meta-control-template").html());
 
-	// adding new modules
+	// edit button
+	$(document).on("click", "button.edit-module-btn", function(event) {
+		var note = $(this).parents(".note");
+		note.find("div[role='module']:not(.meta-module)").editModule();
+		showNextDialog(
+				note.find(".meta-control-module"),
+				note.find(".edit-control-module"),
+				function(event, source) {
+					note.find("div[role='module']:not(.meta-module)").endEdit();
+				});
+	});
+
+	// new module button
 	$(document).on("click", "button.new-module-btn", function(event) {
 		var note = $(this).parents(".note");
 		showNextDialog(
@@ -389,7 +401,7 @@ $(document).ready(function() {
 		event.stopPropagation();
 	});
 
-	// removing notes
+	// remove button
 	$(document).on("click", "button.remove-module-btn", function(event) {
 		var note = $(this).parents(".note");
 
