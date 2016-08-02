@@ -254,6 +254,59 @@ var makeNoteEditable = function(inObject) {
 
 // ----------------------------------------------------------------------------
 
+/*
+ * Enters the note into edit mode.
+ * This should allow the user to modify any text or data about the modules,
+ * as well as move and remove modules in and from the note.
+ */
+$.fn.editModule = function() {
+
+	this.each(function() {
+		var module = $(this);
+
+		var type = module.data("type");
+		var contents = module.children();
+
+		//console.log(contents);
+
+		switch(type) {
+			case "header":
+			case "text":
+				contents.attr("contenteditable", "true");
+				break;
+			case "image":
+				// replace image with text fields for all the atributes
+				break;
+			case "list":
+				// make the text for each bullet editable
+				// add a delete button for each bullet
+				break;
+		}
+	});
+
+}
+
+/*
+ * Call this function when a note is done editing
+ * This should extract the new data from the note,
+ * and send it off to the server.
+ */
+$.fn.endEdit = function(note) {
+	this.each(function() {
+		var module = $(this);
+		var type = module.data("type");
+		var contents = module.children();
+
+		switch(type) {
+			case "header":
+			case "text":
+				contents.attr("contenteditable", "false");
+				break;
+		}
+	});
+}
+
+
 // Dialog is from where you came, module is where you are going
 // Both should be jQuery objects
 var showNextDialog = function(dialog, module, callback) {
