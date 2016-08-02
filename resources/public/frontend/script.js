@@ -309,7 +309,9 @@ $.fn.endEdit = function(note) {
 
 // Dialog is from where you came, module is where you are going
 // Both should be jQuery objects
-var showNextDialog = function(dialog, module, callback) {
+$.fn.showNextDialog = function(module, callback) {
+
+	var dialog = this;
 
 	// slideUp hides, sildeDown unhides
 	dialog.slideUp(200);
@@ -361,8 +363,7 @@ $(document).ready(function() {
 	$(document).on("click", "button.edit-module-btn", function(event) {
 		var note = $(this).parents(".note");
 		note.find("div[role='module']:not(.meta-module)").editModule();
-		showNextDialog(
-				note.find(".meta-control-module"),
+		note.find(".meta-control-module").showNextDialog(
 				note.find(".edit-control-module"),
 				function(event, source) {
 					note.find("div[role='module']:not(.meta-module)").endEdit();
@@ -372,8 +373,7 @@ $(document).ready(function() {
 	// new module button
 	$(document).on("click", "button.new-module-btn", function(event) {
 		var note = $(this).parents(".note");
-		showNextDialog(
-				note.find(".meta-control-module"),
+		note.find(".meta-control-module").showNextDialog(
 				note.find(".module-adder-module"),
 				function(event, source) {
 					console.log(source);
@@ -405,8 +405,7 @@ $(document).ready(function() {
 	$(document).on("click", "button.remove-module-btn", function(event) {
 		var note = $(this).parents(".note");
 
-		showNextDialog(
-				note.find(".meta-control-module"),
+		note.find(".meta-control-module").showNextDialog(
 				note.find(".remove-confirm-module"),
 				function(event, source) {
 					var note = $(source).closest(".note");
