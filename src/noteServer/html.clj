@@ -8,7 +8,7 @@
 ;; TODO split this into multiple functions, so it gets readable
 (defhtml format-notes [entries]
   (println entries)
-  (map 
+  (map
     (fn [note]
       (println note)
       (let [note-id (:id note)
@@ -39,6 +39,8 @@
                          "text"
                          [:p (:text data)])]))
               modules)
+
+         [:span.module-divide]
 
          [:div.footer-module {:role "module"}
           [:span.id "Id: " note-id]]]))
