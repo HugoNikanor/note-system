@@ -236,6 +236,41 @@ var makeNoteEditable = function(inObject) {
 	input.focus();
 }
 
+// ----------------------------------------------------------------------------
+
+// Dialog is from where you came, module is where you are going
+// Both should be jQuery objects
+var showNextDialog = function(dialog, module, callback) {
+
+	// slideUp hides, sildeDown unhides
+	dialog.slideUp(200);
+	module.slideDown(200);
+
+	// TODO possibly find a more elegant way to
+	// stop multiple listeners from being added
+	module.find("button").unbind("click");
+	module.find("button").click(function(event) {
+		callback(event, this);
+
+		// TODO these animations doesn't run!
+		//dialog.slideDown();
+		//module.slideUp();
+
+		dialog.show(0);
+		module.hide(0);
+	});
+
+}
+
+/*
+ * addes a new module of the type 'moduleType',
+ * the body 'moduleBody' to the note 'note'
+ */
+var addNewModule = function(note, moduleType, moduleBody) {
+	var module = "<div class='" + moduleType + "-module' role='module'>" + moduleBody + "</div>";
+	note.find(".module-divide").before(module);
+}
+
 $(document).ready(function() {
 	// add the submit handler to the new note submit form
 	//$(".new-note").submit(newNoteForm);
