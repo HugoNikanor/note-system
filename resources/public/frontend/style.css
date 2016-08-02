@@ -86,9 +86,18 @@ div[role="module"] > * {
 /*** EDIT MODE ***/
 
 /* TODO possibly prettier way to indicate editable */
-.header-module *[contenteditable='true'],
-.text-module   *[contenteditable='true'] {
+*[role="module"] *[contenteditable="true"],
+*[role="module"] *[contenteditable="true"] {
 	color: blue;
+}
+
+.remove-bullet-button {
+	color: red;
+	float: right;
+	border: none;
+	background-color: inherit;
+	font-size: inherit;
+	padding: 0;
 }
 
 /*** META CONTROL MODULE ***/

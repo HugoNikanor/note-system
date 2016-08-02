@@ -278,8 +278,13 @@ $.fn.editModule = function() {
 				// replace image with text fields for all the atributes
 				break;
 			case "list":
-				// make the text for each bullet editable
-				// add a delete button for each bullet
+				// Note that the button can be deleted since it's a child of the <li>
+				// TODO could the buttons be to close together to comfortably be used
+				// TODO this should also temporarly disable toggling of the checkmax
+				//❌
+				var listItems = contents.find("li:not(.new-item)");
+				listItems.attr("contenteditable", "true");
+				listItems.append("<button class='remove-bullet-button'>X</button>");
 				break;
 		}
 	});
@@ -303,6 +308,12 @@ $.fn.endEdit = function(note) {
 			case "header":
 			case "text":
 				contents.attr("contenteditable", "false");
+				break;
+			case "list":
+				// TODO this should reenable checkbox behavior
+				var listItems = contents.find("li:not(.new-item)");
+				listItems.attr("contenteditable", "false");
+				listItems.find(".remove-bullet-button").remove();
 				break;
 		}
 	});
