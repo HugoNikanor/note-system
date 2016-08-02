@@ -284,6 +284,8 @@ $.fn.editModule = function() {
 		}
 	});
 
+	return this;
+
 }
 
 /*
@@ -304,6 +306,8 @@ $.fn.endEdit = function(note) {
 				break;
 		}
 	});
+
+	return this;
 }
 
 
@@ -331,11 +335,14 @@ $.fn.showNextDialog = function(module, callback) {
 		module.hide(0);
 	});
 
+	return this;
 }
 
 /*
  * addes a new module of the type 'moduleType',
  * the body 'moduleBody' to the note 'note'
+ *
+ * Should be applied to a 'note'
  */
 $.fn.addNewModule = function(moduleType, moduleBody) {
 
@@ -343,6 +350,8 @@ $.fn.addNewModule = function(moduleType, moduleBody) {
 
 	var module = "<div class='" + moduleType + "-module' role='module'>" + moduleBody + "</div>";
 	note.find(".module-divide").before(module);
+
+	return this;
 }
 
 $(document).ready(function() {
