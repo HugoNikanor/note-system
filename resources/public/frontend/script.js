@@ -337,7 +337,10 @@ $.fn.showNextDialog = function(module, callback) {
  * addes a new module of the type 'moduleType',
  * the body 'moduleBody' to the note 'note'
  */
-var addNewModule = function(note, moduleType, moduleBody) {
+$.fn.addNewModule = function(moduleType, moduleBody) {
+
+	var note = this;
+
 	var module = "<div class='" + moduleType + "-module' role='module'>" + moduleBody + "</div>";
 	note.find(".module-divide").before(module);
 }
@@ -395,7 +398,7 @@ $(document).ready(function() {
 							moduleBody = "<ul class='checkbox-list'><li>sample</li></ul>";
 							break;
 					}
-					addNewModule(note, moduleType, moduleBody);
+					note.addNewModule(moduleType, moduleBody);
 				});
 
 		event.stopPropagation();
