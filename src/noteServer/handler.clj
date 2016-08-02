@@ -49,14 +49,17 @@
                     [:div.meta-module.remove-confirm-module {:role "module"}
                      [:div.button-spacer
                      [:button.remove-confirm-btn {:name "confirm"} "Really Delete"]
-                     [:button.remove-cancel-btn {:name "cancel"} "Cancel"]]]
+                     [:button.remove-cancel-btn  {:name "cancel"} "Cancel"]]]
                    ;[:template#meta-control-template
                     ;; TODO call this module something better
                     [:div.meta-module.meta-control-module {:role "module"}
                      [:div.button-spacer
                       [:button.edit-module-btn   [:object { :type "image/svg+xml" :data "icons/edit.svg"}]]
                       [:button.new-module-btn    [:object { :type "image/svg+xml" :data "icons/new.svg"}]]
-                      [:button.remove-module-btn [:object { :type "image/svg+xml" :data "icons/delete.svg"}]]]]]
+                      [:button.remove-module-btn [:object { :type "image/svg+xml" :data "icons/delete.svg"}]]]]
+                    [:div.meta-module.edit-control-module {:role "module"}
+                     [:div.button-spacer
+                      [:button {:name "end-edit"} "End Edit"]]]]
 
                    [:section#note-container (html/format-notes (db/query-notes))]]))
 
