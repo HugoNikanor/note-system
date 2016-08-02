@@ -46,6 +46,7 @@ var enableCheckbox = function(event) {
 /*
  * This takes a json list of list bullets, and returns the HTML equivalent
  */
+/*
 var createHTMLList = function(json) {
 	var bullets = "";
 	var bulletTemplate = Handlebars.compile($("#single-bullet-template").html());
@@ -57,9 +58,12 @@ var createHTMLList = function(json) {
 
 	return "<ul class='checkbox-list'>"+bullets+"</ul>";
 }
+*/
 
 /*
  * This handles the post request when adding a new bullet to a list
+ *
+ * TODO this only needs minor cleanup for the new version
  */
 var newBulletSubmit = function(event) {
 	var form = $(event.target);
@@ -101,6 +105,7 @@ var newBulletSubmit = function(event) {
  * If the note is a list it also fetches the list items, and adds
  * them to the dom
  */
+/*
 var createNote = function(json) {
 	var template = Handlebars.compile($("#note-template").html());
 
@@ -149,6 +154,7 @@ var createNote = function(json) {
 		});
 	}
 }
+*/
 
 /*
  * Get notes by url, and adds them to the dom
@@ -156,24 +162,29 @@ var createNote = function(json) {
  * /note?id=<id>
  * 		<id> is a comma separated list of note id's
  */
+/*
 var getNotes = function(url) {
 	$.getJSON(url, function(data) {
 		data.map(createNote);
 	});
 }
+*/
 
 /*
  * Get notes by id's, and adds them to the dom
  */
+/*
 var getNotesById = function(id) {
 	var url = "/note?id=" + id;
 	getNotes(url);
 }
+*/
 
 /*
  * Handles the post request when creating a new note
  * Adds the newly posted note to the dom
  */
+/*
 var newNoteForm = function(event) {
 	event.preventDefault();
 	var form = $(event.target);
@@ -193,6 +204,7 @@ var newNoteForm = function(event) {
 
 	form[0].reset();
 }
+*/
 
 /*
  * Makes the node editable.
@@ -201,6 +213,7 @@ var newNoteForm = function(event) {
  *
  * TODO make <input> submit also work with enter
  */
+/*
 var makeNoteEditable = function(inObject) {
 	var object;
 	var id;
@@ -237,6 +250,7 @@ var makeNoteEditable = function(inObject) {
 
 	input.focus();
 }
+*/
 
 // ----------------------------------------------------------------------------
 
