@@ -211,9 +211,6 @@ button.image-module-btn {
 .checkbox-list {
 	padding-left: 20px;
 }
-.checkbox-list form {
-	display: inline;
-}
 
 .checkbox-list li {
 	cursor: pointer;
@@ -235,6 +232,8 @@ button.image-module-btn {
 	margin: 0px;
 	padding: 0px;
 	margin-left: 0.4em;
+	display: inline;
+	width: 100%;
 }
 /*
 .checkbox-list > li.new-item input {
