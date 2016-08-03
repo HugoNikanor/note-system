@@ -86,13 +86,20 @@ div[role="module"] > * {
 	color: blue;
 }
 
+.li-spacer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+li {
+	width: 100%;
+}
+
 .remove-bullet-button {
 	color: red;
-	float: right;
 	border: none;
 	background-color: inherit;
 	font-size: inherit;
-	padding: 0;
 }
 
 /*** META CONTROL MODULE ***/
@@ -205,23 +212,23 @@ button.image-module-btn {
 	display: inline;
 }
 
-.checkbox-list > li {
+.checkbox-list li {
 	cursor: pointer;
 	list-style-position: inside;
 }
-.checkbox-list > li.checked {
+.checkbox-list li.checked {
 	text-decoration: line-through;
 	color: gray;
 }
 
-.checkbox-list > li.new-item {
+.checkbox-list li.new-item {
 	list-style: none;
 }
-.checkbox-list > li.new-item:before {
+.checkbox-list li.new-item:before {
 	content: "+";
 }
 
-.checkbox-list > li.new-item > form {
+.checkbox-list li.new-item > form {
 	margin: 0px;
 	padding: 0px;
 	margin-left: 0.4em;

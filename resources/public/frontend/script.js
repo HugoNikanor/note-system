@@ -278,13 +278,19 @@ $.fn.editModule = function() {
 				// replace image with text fields for all the atributes
 				break;
 			case "list":
-				// Note that the button can be deleted since it's a child of the <li>
-				// TODO could the buttons be to close together to comfortably be used
-				// TODO this should also temporarly disable toggling of the checkmax
-				//❌
 				var listItems = contents.find("li:not(.new-item)");
 				listItems.attr("contenteditable", "true");
-				listItems.append("<button class='remove-bullet-button'>X</button>");
+				listItems.wrap("<span class='li-spacer' />");
+				// Remove the button when unfocused,
+				// but first after a short delay so it still is clickable
+				// TODO if this delay is to short the button
+				// click isn't registered, keep this in mind
+				listItems.focusout(function(event) {
+					var li = $(this);
+					setTimeout(function() {
+						li.siblings("button").remove();
+					}, 100);
+				});
 				break;
 		}
 	});
@@ -310,10 +316,11 @@ $.fn.endEdit = function(note) {
 				contents.attr("contenteditable", "false");
 				break;
 			case "list":
-				// TODO this should reenable checkbox behavior
-				var listItems = contents.find("li:not(.new-item)");
-				listItems.attr("contenteditable", "false");
-				listItems.find(".remove-bullet-button").remove();
+				module.find("span").replaceWith(function() {
+					var items = $(this).find("li");
+					items.attr("contenteditable", "false");
+					return items;
+				});
 				break;
 		}
 	});
@@ -383,6 +390,24 @@ $(document).ready(function() {
 			"click",
 			".checkbox-list > li[contenteditable!='true']:not(.new-item)",
 			checkboxHandler);
+
+	// this listener is here so it isn't added every time edit mode is entered
+	// It adds the bullet remove button when a bullet is pressed, the selector
+	// targets the li element so that the button doesn't spawn another of itself.
+	//
+	// Note that deleting all the text in a bullet should also remove it
+	$(document).on("focus", ".li-spacer > li", function(event) {
+		var btn = $("<button class='remove-bullet-button'>❌</button>");
+		btn.click(function(event) {
+			// TODO send to server that the bullet is removed
+			// or at least add it to the stack of pending changes,
+			// if I decide to both have a "save changes" and
+			// "cancel changes" button
+			console.log(this);
+			$(this).parents(".li-spacer").remove();
+		});
+		$(this).after(btn);
+	});
 
 	// add meta buttons
 	$(".module-divide").after($("#meta-control-template").html());
