@@ -21,11 +21,6 @@ button > object {
 	pointer-events: none;
 }
 
-.button-spacer {
-	display: flex;
-	justify-content: space-between;
-}
-
 /*** NOTE ***/
 
 /* Note */
@@ -107,6 +102,11 @@ div[role="module"] > * {
 .remove-confirm-module,
 .edit-control-module {
 	display: none;
+}
+
+.button-spacer {
+	display: flex;
+	justify-content: space-between;
 }
 
 /* Grow all elements to equal size, space them evenly, fill the area */
