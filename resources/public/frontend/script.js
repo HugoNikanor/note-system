@@ -379,7 +379,10 @@ $(document).ready(function() {
 	//getNotes("/note/all");
 
 	// enable checkbox lists
-	$(document).on("click", ".checkbox-list > li", checkboxHandler);
+	$(document).on(
+			"click",
+			".checkbox-list > li[contenteditable!='true']:not(.new-item)",
+			checkboxHandler);
 
 	// add meta buttons
 	$(".module-divide").after($("#meta-control-template").html());
