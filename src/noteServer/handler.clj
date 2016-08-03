@@ -42,13 +42,13 @@
                    ;[:template#module-adder-template
                     [:div.meta-module.module-adder-module {:role "module"}
                      [:div.button-spacer
-                      [:button.module-btn.header-module-btn {:data-type "header"} "H"]
-                      [:button.module-btn.text-module-btn   {:data-type "text"  } "T"]
-                      [:button.module-btn.list-module-btn   {:data-type "list"  }
+                      [:button.module-btn.header-module-btn {:name "header"} "H"]
+                      [:button.module-btn.text-module-btn   {:name "text"  } "T"]
+                      [:button.module-btn.list-module-btn   {:name "list"  }
                        ;; this image might make the animations lag...
                        ;; TODO center this better
                        [:object { :type "image/svg+xml" :data "icons/list.svg"}]]
-                      [:button.module-btn.image-module-btn  {:data-type "image" } "I"]]]
+                      [:button.module-btn.image-module-btn  {:name "image" } "I"]]
                    ;[:template#remove-confirm-template
                     [:div.meta-module.remove-confirm-module {:role "module"}
                      [:div.button-spacer

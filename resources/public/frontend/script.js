@@ -431,7 +431,7 @@ $(document).ready(function() {
 				function(event, source) {
 					console.log(source);
 					var moduleBody;
-					var moduleType = source.dataset.type;
+					var moduleType = source.name;
 					switch(moduleType) {
 						case "header":
 							moduleBody = "<h1>New Header!</h1>";
