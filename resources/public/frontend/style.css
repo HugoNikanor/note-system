@@ -118,10 +118,10 @@ div[role="module"] > * {
 	font-size: 1em;
 }
 
-/* This is so that the fancy edit buttons don't grow to large,
- * it should maybe be removed and replaced with size restrictions on the objects. */
-.meta-control-module button {
-	flex-basis: 50px;
+/* SVG icon size contrain */
+button > object {
+	max-width:  90%;
+	max-height: 90%;
 }
 
 .remove-confirm-btn {
