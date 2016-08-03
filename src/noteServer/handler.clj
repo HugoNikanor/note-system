@@ -40,6 +40,7 @@
                   [:body
                    [:template#meta-control-template
                    ;[:template#module-adder-template
+                    ;; TODO add images for all these buttons
                     [:div.meta-module.module-adder-module {:role "module"}
                      [:div.button-spacer
                       [:button.module-btn.header-module-btn {:name "header"} "H"]
