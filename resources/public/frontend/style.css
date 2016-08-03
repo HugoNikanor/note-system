@@ -86,11 +86,14 @@ div[role="module"] > * {
 	color: blue;
 }
 
+/* List edit */
+
 .li-spacer {
 	display: flex;
 	justify-content: flex-end;
 }
 
+/* Possibly only set this for .li-spacer li */
 li {
 	width: 100%;
 }
