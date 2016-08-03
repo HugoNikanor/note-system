@@ -129,7 +129,7 @@ li {
 }
 
 /* SVG icon size contrain */
-button > object {
+button > * {
 	max-width:  90%;
 	max-height: 90%;
 }
