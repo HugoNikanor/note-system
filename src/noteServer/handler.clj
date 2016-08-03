@@ -32,6 +32,7 @@
                 (html5
                   {:lang "en"}
                   [:head
+                   [:title "Notes!"]
                    (include-js "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
                                "frontend/script.js")
                    (include-css "frontend/style.css"
