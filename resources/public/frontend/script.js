@@ -448,7 +448,9 @@ $(document).ready(function() {
 							moduleBody = "<ul class='checkbox-list'><li>sample</li></ul>";
 							break;
 					}
-					note.addNewModule(moduleType, moduleBody);
+					if(moduleType !== "cancel") {
+						note.addNewModule(moduleType, moduleBody);
+					}
 				});
 
 		event.stopPropagation();

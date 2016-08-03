@@ -48,7 +48,8 @@
                        ;; this image might make the animations lag...
                        ;; TODO center this better
                        [:object { :type "image/svg+xml" :data "icons/list.svg"}]]
-                      [:button.module-btn.image-module-btn  {:name "image" } "I"]]
+                      [:button.module-btn.image-module-btn  {:name "image" } "I"]
+                      [:button.module-btn.cancel-module-add-btn  {:name "cancel" } "C"]]]
                    ;[:template#remove-confirm-template
                     [:div.meta-module.remove-confirm-module {:role "module"}
                      [:div.button-spacer
