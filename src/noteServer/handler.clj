@@ -44,7 +44,10 @@
                      [:div.button-spacer
                       [:button.module-btn.header-module-btn {:data-type "header"} "H"]
                       [:button.module-btn.text-module-btn   {:data-type "text"  } "T"]
-                      [:button.module-btn.list-module-btn   {:data-type "list"  } "L"]
+                      [:button.module-btn.list-module-btn   {:data-type "list"  }
+                       ;; this image might make the animations lag...
+                       ;; TODO center this better
+                       [:object { :type "image/svg+xml" :data "icons/list.svg"}]]
                       [:button.module-btn.image-module-btn  {:data-type "image" } "I"]]]
                    ;[:template#remove-confirm-template
                     [:div.meta-module.remove-confirm-module {:role "module"}
@@ -58,6 +61,7 @@
                     ;; TODO call this module something better
                     [:div.meta-module.meta-control-module {:role "module"}
                      [:div.button-spacer
+                       ;; TODO center this better
                       [:button.edit-module-btn   [:object { :type "image/svg+xml" :data "icons/edit.svg"}]]
                       [:button.new-module-btn    [:object { :type "image/svg+xml" :data "icons/new.svg"}]]
                       [:button.remove-module-btn [:object { :type "image/svg+xml" :data "icons/delete.svg"}]]]]]
