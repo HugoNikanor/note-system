@@ -56,7 +56,8 @@
                      [:button.remove-cancel-btn  {:name "cancel"} "Cancel"]]]
                     [:div.meta-module.edit-control-module {:role "module"}
                      [:div.button-spacer
-                      [:button {:name "end-edit"} "End Edit"]]]
+                      [:button {:name "save-edit"} "Save"]
+                      [:button {:name "cancel-edit"} "Cancel"]]]
                    ;[:template#meta-control-template
                     ;; TODO call this module something better
                     [:div.meta-module.meta-control-module {:role "module"}
