@@ -367,9 +367,12 @@ $.fn.showNextDialog = function(module, callback) {
 $.fn.addNewModule = function(moduleType, moduleBody) {
 
 	var note = this;
+	var moduleDivide = note.find(".module-divide");
 
-	var module = "<div class='" + moduleType + "-module' role='module'>" + moduleBody + "</div>";
-	note.find(".module-divide").before(module);
+	$("<div class='" + moduleType + "-module' role='module'>" + moduleBody + "</div>")
+		.hide()
+		.insertBefore(moduleDivide)
+		.slideDown();
 
 	return this;
 }
