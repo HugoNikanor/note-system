@@ -47,7 +47,6 @@
                       [:button.module-btn.text-module-btn   {:name "text"  } "T"]
                       [:button.module-btn.list-module-btn   {:name "list"  }
                        ;; this image might make the animations lag...
-                       ;; TODO center this better
                        [:object { :type "image/svg+xml" :data "icons/list.svg"}]]
                       [:button.module-btn.image-module-btn  {:name "image" } "I"]
                       [:button.module-btn.cancel-module-add-btn  {:name "cancel" } "C"]]]
@@ -64,7 +63,6 @@
                     ;; TODO call this module something better
                     [:div.meta-module.meta-control-module {:role "module"}
                      [:div.button-spacer
-                       ;; TODO center this better
                       [:button.edit-module-btn   [:object { :type "image/svg+xml" :data "icons/edit.svg"}]]
                       [:button.new-module-btn    [:object { :type "image/svg+xml" :data "icons/new.svg"}]]
                       [:button.remove-module-btn [:object { :type "image/svg+xml" :data "icons/delete.svg"}]]]]]
