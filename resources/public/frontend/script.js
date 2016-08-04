@@ -55,7 +55,6 @@ var createHTMLList = function(json) {
  * This handles the post request when adding a new bullet to a list
  *
  * TODO this only needs minor cleanup for the new version
- */
 var newBulletSubmit = function(event) {
 	var form = $(event.target);
 
@@ -90,6 +89,7 @@ var newBulletSubmit = function(event) {
 			});
 	event.preventDefault();
 }
+*/
 
 /*
  * This takes a note in json form and adds it it in html form to the dom
@@ -379,6 +379,36 @@ $(document).ready(function() {
 
 	// add all notes from the server to start with
 	//getNotes("/note/all");
+
+	// form for adding new items to bullet lists
+	$(document).on("submit", "form[name='new-bullet']", function(event) {
+
+		var form = $(this);
+		var rawData = form.serializeArray();
+		var data = {};
+
+		// transform the json from form.seri... to a more sensible form
+		$.each(rawData, function(index, dataPoint) {
+			data[dataPoint.name] = dataPoint.value;
+		});
+
+		// data is now:
+		// {"text":"Test","module-id":"3","note-id":"1"}
+
+		post("/note/list/add-item", data, function(resp) {
+			var id = JSON.parse(resp)[0].generated_key;
+
+			$("<li data-id='" + id + "'>" + data.text + "</li>")
+				.hide()
+				.insertBefore(form.parents("li"))
+				.slideDown(200);
+
+			form[0].reset();
+		});
+
+		// This stops the form from sending a request to the server
+		event.preventDefault();
+	});
 
 	// enable checkbox lists
 	$(document).on(
