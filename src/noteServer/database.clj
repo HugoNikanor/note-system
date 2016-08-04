@@ -74,22 +74,23 @@
          (sql/query database (into [] (cons query notes))))))
 
 
-;;; Stuff for writing to the database, probably doesn't work since the database
-;;; layout was changed to accomodate for modules 
-
 ; TODO maybe this function should be typed...
-; new-value should be supplied as zero or one, for false or true
-(defn change-checkbox! [list-id id new-value]
-  (sql/update! database :note_list
+; new value should be given as an int, with 1 for true and 0 for false
+(defn change-checkbox! [note-id module-id item-id new-value]
+  (sql/update! database :list_items
                {:done new-value}
-               ["list_id = ? and id = ?"
-                list-id
-                id]))
+               ["note_id  = ? and
+                module_id = ? and
+                id        = ?"
+                note-id module-id item-id]))
 
-(defn insert-list-item! [list-id text]
-  (sql/insert! database :note_list
-               {:list_id list-id
+(defn insert-list-item! [note-id module-id text]
+  (sql/insert! database :list_items
+               {:note_id note-id
+                :module_id module-id
                 :text text}))
+
+;;; Stuff that probably doesn't work since the introduction of modules
 
 (defn update-note! [id header body]
   (sql/update! database :note_test

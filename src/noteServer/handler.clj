@@ -81,15 +81,23 @@
                          [:h1 "Unknown Type"]
                          [:p "This should possibly be set to json, to match the older code..."]])))
 
-           ;(GET "/list" [id]
            (context "/list" []
-                    (GET "/" [id]
-                         (json/format-notes (db/query-list id)))
-                    (POST "/set-checkbox" [list-id id new-value]
-                          (db/change-checkbox! list-id id new-value))
-                    (POST "/add-item" [list-id text]
-                          (println (str list-id ": " text))
-                          (j/write-str (db/insert-list-item! list-id text))))
+                    ;(GET "/" [id]
+                    ;     (json/format-notes (db/query-list id)))
+                    ;(POST "/set-checkbox" [list-id id new-value]
+                    ;      (db/change-checkbox! list-id id new-value))
+                    ;(POST "/add-item" [list-id text]
+                    ;      (println (str list-id ": " text))
+                    ;      (j/write-str (db/insert-list-item! list-id text)))
+                    (POST "/set-checkbox" [note-id module-id item-id new-value]
+                          (println new-value)
+                          (println (type new-value))
+                          (db/change-checkbox! note-id module-id item-id new-value))
+                    ;; retuns [{"generated_key": 'new-id'}]
+                    (POST "/add-item" [note-id module-id text]
+                          (j/write-str (db/insert-list-item! note-id module-id text)))
+                          )
+
            (context "/token" []
                     (GET "/raw" [] *anti-forgery-token*)
                     (GET "/html" [] (anti-forgery-field)))

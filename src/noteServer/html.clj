@@ -24,7 +24,7 @@
                    (println type)
                    (case type
                      "list"
-                     [:ul.checkbox-list {:data-note-id note-id :module-id module-id}
+                     [:ul.checkbox-list {:data-note-id note-id :data-module-id module-id}
                       (map (fn [li]
                              (let [d (:done li)
                                    item-id (:id li)
