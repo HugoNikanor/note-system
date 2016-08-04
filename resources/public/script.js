@@ -125,14 +125,8 @@ $.fn.showNextDialog = function(module, callback) {
 	module.find("button").click(function(event) {
 		callback(event, this);
 
-		// TODO these animations lag in chrome for linux
-		// But not in chrome for android, or firefox for linux
-		// look into this
 		dialog.slideDown(200);
 		module.slideUp(200);
-
-		//dialog.show(0);
-		//module.hide(0);
 	});
 
 	return this;

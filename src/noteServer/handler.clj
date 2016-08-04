@@ -50,8 +50,6 @@
                       [:button.module-btn.header-module-btn {:name "header"} "H"]
                       [:button.module-btn.text-module-btn   {:name "text"  } "T"]
                       [:button.module-btn.list-module-btn   {:name "list"  }
-                       ;; this image might make the animations lag...
-                       ;[:object { :type "image/svg+xml" :data "icons/list.svg"}]
                        list-img]
                       [:button.module-btn.image-module-btn  {:name "image" } "I"]
                       [:button.module-btn.cancel-module-add-btn  {:name "cancel" } "C"]]]
