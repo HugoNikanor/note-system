@@ -12,6 +12,7 @@
             [hiccup.core :refer :all]
             [hiccup.page :refer :all]
             [other.call :refer :all]
+            [clojure.java.io :as io]
             [clojure.string :as str]))
 
 (defroutes app-routes
@@ -29,6 +30,10 @@
 
            ;; This is for debugging, at least for now
            (GET "/page" []
+                (let [edit-img (slurp (io/resource "icons/edit.svg"))
+                      remove-img (slurp (io/resource "icons/remove.svg"))
+                      list-img (slurp (io/resource "icons/list.svg"))
+                      new-img (slurp (io/resource "icons/new.svg"))]
                 (html5
                   {:lang "en"}
                   [:head
@@ -47,7 +52,8 @@
                       [:button.module-btn.text-module-btn   {:name "text"  } "T"]
                       [:button.module-btn.list-module-btn   {:name "list"  }
                        ;; this image might make the animations lag...
-                       [:object { :type "image/svg+xml" :data "icons/list.svg"}]]
+                       ;[:object { :type "image/svg+xml" :data "icons/list.svg"}]
+                       list-img]
                       [:button.module-btn.image-module-btn  {:name "image" } "I"]
                       [:button.module-btn.cancel-module-add-btn  {:name "cancel" } "C"]]]
                    ;[:template#remove-confirm-template
@@ -63,11 +69,11 @@
                     ;; TODO call this module something better
                     [:div.meta-module.meta-control-module {:role "module"}
                      [:div.button-spacer
-                      [:button.edit-module-btn   [:object { :type "image/svg+xml" :data "icons/edit.svg"}]]
-                      [:button.new-module-btn    [:object { :type "image/svg+xml" :data "icons/new.svg"}]]
-                      [:button.remove-module-btn [:object { :type "image/svg+xml" :data "icons/delete.svg"}]]]]]
+                      [:button.edit-module-btn edit-img]
+                      [:button.new-module-btn new-img]
+                      [:button.remove-module-btn remove-img]]]]
 
-                   [:section#note-container (html/format-notes (db/query-notes))]]))
+                   [:section#note-container (html/format-notes (db/query-notes))]])))
 
            ; TODO filter?
            (GET "/all" [type]
