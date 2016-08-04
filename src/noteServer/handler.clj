@@ -34,9 +34,9 @@
                   [:head
                    [:title "Notes!"]
                    (include-js "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
-                               "frontend/script.js")
-                   (include-css "frontend/style.css"
-                                "frontend/svg-style.css")]
+                               "script.js")
+                   (include-css "style.css"
+                                "svg-style.css")]
                   [:body
                    [:template#meta-control-template
                    ;[:template#module-adder-template
