@@ -40,8 +40,7 @@
                    [:title "Notes!"]
                    (include-js "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
                                "script.js")
-                   (include-css "style.css"
-                                "svg-style.css")]
+                   (include-css "style.css")]
                   [:body
                    [:template#meta-control-template
                    ;[:template#module-adder-template
