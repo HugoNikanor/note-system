@@ -369,7 +369,8 @@ $.fn.addNewModule = function(moduleType, moduleBody) {
 	var note = this;
 	var moduleDivide = note.find(".module-divide");
 
-	$("<div class='" + moduleType + "-module' role='module'>" + moduleBody + "</div>")
+	// TODO get data-id for the module from the server
+	$("<div class='" + moduleType + "-module' role='module' data-type='" + moduleType + "'>" + moduleBody + "</div>")
 		.hide()
 		.insertBefore(moduleDivide)
 		.slideDown();
