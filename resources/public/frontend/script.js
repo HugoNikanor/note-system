@@ -15,31 +15,22 @@ var post = function(url, json, callback) {
 /*
  * This enables the functionalty of selecting and deselecting
  * the list bullet points.
- *
- * TODO reenable post
  */
 var checkboxHandler = function(event) {
 	var el = $(this);
+	var ul = el.parent();
 
-	var newValue;
-	if(el.hasClass("checked")) {
-		newValue = 0;
-		el.removeClass("checked");
-	} else {
-		newValue = 1;
-		el.addClass("checked");
-	}
-
-	// this is also called when pressing the new-item 'item'
-	// it probably shouldn't
-	/*
 	post("/note/list/set-checkbox",
 			{
-				"list-id": el.data("listId"),
-				"id": el.data("id"),
-				"new-value": newValue,
+				"note-id":   ul.data("note-id"),
+				"module-id": ul.data("module-id"),
+				"item-id":   el.data("id"),
+				"new-value":
+					el
+					.toggleClass("checked")
+					.hasClass("checked") ? 1 : 0
 			});
-			*/
+
 	event.stopPropagation();
 }
 
