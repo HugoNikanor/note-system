@@ -1,8 +1,6 @@
-<!--
-	A pencil
- -->
+<!-- A pencil -->
 <svg
-	class="circle-plus"
+	class="edit-image"
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 4.1 4.1">
 	<!-- all the 4.1 buisness is due to the width of the stroke -->
