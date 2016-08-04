@@ -35,11 +35,18 @@
                            data)
                       ;; Possibly move the form to a template, both to save
                       ;; bytes, and to only show it when js is active
+                      ;; It's also needed when creating new lists
+                      ;; Note that that would require a bit more work,
+                      ;; since the note and module id need to be known
+                      ;; when submitting the form.
+                      ;; But with some creative selector going upwards
+                      ;; this might not be a problem
                       [:li.new-item
                        [:form {:name "new-bullet"}
                         (text-field {:class "seamless" :placeholder "New bullet"} "text")
                         (submit-button {:class "seamless"} "→")
-                        (hidden-field {:data-module-id module-id :data-note-id note-id} "list-id")]]]
+                        (hidden-field "module-id" module-id)
+                        (hidden-field "note-id" note-id)]]]
                      "image"
                      [:img {:src (:image_src data) :title (:title_text data)}]
                      "header"
