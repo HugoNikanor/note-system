@@ -43,7 +43,8 @@
                       ;; this might not be a problem
                       [:li.new-item
                        [:form {:name "new-bullet"}
-                        (text-field {:class "seamless" :placeholder "New bullet"} "text")
+                        ;; TODO also check that input isn't empty backend
+                        (text-field {:class "seamless" :placeholder "New bullet" :required "true"} "text")
                         (submit-button {:class "seamless"} "→")
                         (hidden-field "module-id" module-id)
                         (hidden-field "note-id" note-id)]]]
