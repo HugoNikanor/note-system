@@ -35,10 +35,22 @@ article.note {
 	font-family: sans;
 	font-size: 12px;
 	*/
-	background-color: lightYellow;
 
 	box-shadow: 5px 5px 2px #888888;
 
+}
+
+article.note.yellow {
+	background-color: lightYellow;
+}
+article.note.blue {
+	background-color: lightBlue;
+}
+article.note.green {
+	background-color: lightGreen;
+}
+article.note.red {
+	background-color: pink;
 }
 
 /*** MODULE BASE ***/
